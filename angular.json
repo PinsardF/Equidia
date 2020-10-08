@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "equidia"
+    }
+  },
+  "defaultProject": "equidia",
+  "cli": {
+    "analytics": false
+  }
 }
