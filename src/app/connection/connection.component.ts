@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connection.component.css']
 })
 export class ConnectionComponent implements OnInit {
-  //Commentaire
+  //Comm
   loginConnection: string;
   passwordConnection: string;
   loginRegister: string;
