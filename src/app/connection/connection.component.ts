@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-connection',
@@ -6,14 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connection.component.css']
 })
 export class ConnectionComponent implements OnInit {
-  //Comm
+ 
   loginConnection: string;
   passwordConnection: string;
   loginRegister: string;
   passwordRegister: string;
   passwordConfirm: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +26,7 @@ export class ConnectionComponent implements OnInit {
       alert("Vous n'avez pas entré de mot de passe")
     } else {
       alert("Connexion avec le login " + this.loginConnection + " et le mdp " + this.passwordConnection)
+      this.router.navigate(['/home'])
     }
   }
 

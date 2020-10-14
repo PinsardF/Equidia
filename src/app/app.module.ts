@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { ConnectionComponent } from './connection/connection.component';
+import { HomeComponent } from './home/home.component';
+import { ReprisesComponent } from './reprises/reprises.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    HomeComponent,
+    ReprisesComponent
   ],
   imports: [
     BrowserModule,

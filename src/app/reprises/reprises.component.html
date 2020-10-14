@@ -1,0 +1,30 @@
+<nav>
+    <a routerLink="/reprises">Reprises</a>
+</nav>
+<router-outlet></router-outlet>
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col s8 offset-s2">
+                <h1>Mes Reprises</h1>
+                <table>
+                    <tbody>
+                        <tr *ngFor="let element of dataList">
+                            <td>{{ element.date }}</td>
+                            <td>{{ element.hour }}</td>
+                            <td>{{ element.level }}</td>
+                            <td>{{ element.instructor }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    h1 {
+        font-weight: bold;
+        text-align:center;
+    }
+</style>
