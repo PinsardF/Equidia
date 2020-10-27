@@ -1,0 +1,73 @@
+<nav>
+    <a routerLink="/reprises">Reprises</a>
+    <a routerLink="/moncompte">Mon compte</a>
+</nav>
+<router-outlet></router-outlet>
+<div>
+  <div class="container">
+    <div class="row">
+      <div class="col s8 offset-s2">
+        <h1>Mon Compte</h1>
+        <!--
+        <div class="row">
+            <div class="input-field col s6 offset-s3">
+                <input [value]=first_name id="first_name" type="text" class="validate">
+                <label for="first_name" class="active">Prénom</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+                <input [value]=last_name id="last_name" type="text" class="validate">
+                <label for="last_name" class="active">Nom</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+                <input [value]=email id="email" type="text" class="validate">
+                <label for="email" class="active">E-mail</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+                <input [value]=phone id="phone" type="text" class="validate">
+                <label for="phone" class="active">Téléphone</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+                <input placeholder="Non renseigné" [value]=license_number id="license_number" type="text">
+                <label for="license_number" class="active">Numéro de licence</label>
+            </div>
+            <div class="row center">
+                <button (click)="validate()" class="waves-effect waves-light btn">Valider les modifications</button>
+            </div>
+        </div>
+        -->
+        <div class="row">
+            <div class="input-field col s6 offset-s3">
+                <input [value]=first_name id="first_name" type="text" class="validate">
+                <label for="first_name" class="active">Prénom</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+                <input [value]=last_name id="last_name" type="text" class="validate">
+                <label for="last_name" class="active">Nom</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+                <input [value]=email id="email" type="email" class="validate">
+                <label for="email" class="active">E-mail</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+                <input [value]=phone id="phone" type="text" class="validate">
+                <label for="phone" class="active">Téléphone</label>
+            </div>
+            <div class="input-field col s6 offset-s3">
+                <input placeholder="Non renseigné" [value]=license_number id="license_number" type="text">
+                <label for="license_number" class="active">Numéro de licence</label>
+            </div>
+            <div class="row center">
+                <button type="submit" class="waves-effect waves-light btn">Valider les modifications</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    h1 {
+        font-weight: bold;
+        text-align:center;
+    }
+</style>

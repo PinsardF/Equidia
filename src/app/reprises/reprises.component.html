@@ -1,5 +1,6 @@
 <nav>
     <a routerLink="/reprises">Reprises</a>
+    <a routerLink="/moncompte">Mon compte</a>
 </nav>
 <router-outlet></router-outlet>
 <div>
@@ -7,7 +8,7 @@
         <div class="row">
             <div class="col s8 offset-s2">
                 <h1>Mes Reprises</h1>
-                <table>
+                <table class="centered">
                     <tbody>
                         <tr *ngFor="let element of dataList">
                             <td>{{ element.date }}</td>
@@ -26,5 +27,10 @@
     h1 {
         font-weight: bold;
         text-align:center;
+    }
+
+    .centered {
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>

@@ -21,10 +21,9 @@ export class ReprisesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.dataList = [{date: '24/08', hour: '18h', level: 'Niveau 3', instructor: 'Avec Julien Frimas'},
+    this.dataList = [{date: '24/08', hour: '18h', level: 'Niveau 2', instructor: 'Avec Julien Frimas'},
     {date: '24/08', hour: '18h30', level: 'Niveau 3', instructor: 'Avec Julien Frimas'}];
-    console.log(this.dataList)
-
+    // console.log(this.dataList);
   }
 
 }
