@@ -16,12 +16,12 @@ export class MyAccountComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {/*
     this.first_name = "Eric";
     this.last_name = "Dubois";
     this.email = "ericdubois@gmail.com";
     this.phone = "0158744472";
-    this.license_number = "";
+    this.license_number = "";*/
   }
 
   validate() {

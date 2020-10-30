@@ -9,6 +9,10 @@ import { ConnectionComponent } from './connection/connection.component';
 import { HomeComponent } from './home/home.component';
 import { ReprisesComponent } from './reprises/reprises.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list';
+import {MatButtonModule } from '@angular/material/button'
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { MyAccountComponent } from './my-account/my-account.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
