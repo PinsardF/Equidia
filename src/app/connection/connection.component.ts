@@ -45,6 +45,7 @@ export class ConnectionComponent implements OnInit {
     }
     return this.loginConnectionForm.hasError('email') ? 'L\'email entré n\'est pas valide' : '';
   }
+  
   getErrorMessagepwC() {
     if (this.passwordConnectionForm.hasError('required')) {
       return 'Vous n\'avez pas entré de mot de passe';
