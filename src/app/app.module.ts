@@ -12,7 +12,8 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatButtonModule } from '@angular/material/button'
+import {MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MatButtonModule } from '@angular/material/button'
     MatInputModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

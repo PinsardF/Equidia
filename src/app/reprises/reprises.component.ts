@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 export interface Reprise {
   date: string;
@@ -14,7 +15,8 @@ export interface Reprise {
 })
 export class ReprisesComponent implements OnInit {
 
-  //displayedColumns: string[] = ['Date', 'Horaire', 'Niveau', 'Moniteur'];
+  levelForm = new FormControl();
+  levelList: string[] = ['1', '2', '3', '4', '5', '6', '7']
   dataList: Reprise[];
   machin: string;
 

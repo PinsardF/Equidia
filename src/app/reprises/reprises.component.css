@@ -1,4 +1,9 @@
 /* DashboardComponent's private CSS styles */
+h1 {
+  font-weight: bold;
+  text-align:center;
+}
+
 [class*='col-'] {
     float: left;
     padding-right: 20px;
