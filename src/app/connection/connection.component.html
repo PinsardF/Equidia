@@ -48,39 +48,10 @@
         </div>
     </div>
 </div>-->
-<!--
-<mat-grid-list cols="12">
-    <mat-grid-tile [colspan]="1"></mat-grid-tile>
-    <mat-grid-tile [colspan]="5">
-            <h1>Connexion</h1>
-            <mat-form-field appearance="standard">
-                <mat-label>Login</mat-label>
-                <input matInput (input)="loginConnection=$event.target.value" id="loginConnection" 
-                [formControl]="text" required>
-                <mat-error *ngIf="text.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>Password</mat-label>
-                <input matInput (input)="passwordConnection=$event.target.value" id="passwordConnection" 
-                [formControl]="text" required>
-                <mat-error *ngIf="text.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-
-            
-            <div class="row center">
-                <button type="submit" [disabled]="form.invalid>Connexion</button>
-            </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="5">
-        <h1>Inscription</h1>
-    </mat-grid-tile>
-</mat-grid-list>
--->
 <mat-grid-list cols="12">
     <mat-grid-tile [colspan]="12" [rowspan]="1"></mat-grid-tile>
     <mat-grid-tile [colspan]="1"></mat-grid-tile>
-    <mat-grid-tile [colspan]="5" [rowspan]="2">
-        <!--<form #connectionForm=ngForm (ngSubmit)="Submit()">-->
+    <mat-grid-tile [colspan]="5" [rowspan]="3">
         <form>
             <table>
                 <tr>
@@ -91,7 +62,7 @@
                 <tr>
                     <td>
                         <mat-form-field appearance="standard">
-                            <mat-label>Login</mat-label>
+                            <mat-label>Email</mat-label>
                             <input matInput (input)="loginConnection=$event.target.value" id="loginConnection" 
                             [formControl]="loginConnectionForm" required>
                             <mat-error *ngIf="loginConnectionForm.invalid">{{getErrorMessagelogC()}}</mat-error>
@@ -110,8 +81,59 @@
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" mat-raised-button color="primary" (click)="connect()"
-                        [disabled]="loginConnectionForm.invalid || passwordConnectionForm.invalid">Connexion</button>
+                        <div class="wrapper">
+                            <button type="submit" mat-raised-button color="primary" (click)="connect()"
+                            [disabled]="loginConnectionForm.invalid || passwordConnectionForm.invalid">Connexion</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="5" [rowspan]="3">
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <h1>Inscription</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Email</mat-label>
+                            <input matInput (input)="loginRegister=$event.target.value" id="loginRegister" 
+                            [formControl]="loginRegisterForm" required>
+                            <mat-error *ngIf="loginRegisterForm.invalid">{{getErrorMessagelogR()}}</mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Mot de passe</mat-label>
+                            <input matInput (input)="passwordRegister=$event.target.value" id="passwordRegister" 
+                            [formControl]="passwordRegisterForm" required>
+                            <mat-error *ngIf="passwordRegisterForm.invalid">{{getErrorMessagepwR()}}</mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Mot de passe (encore)</mat-label>
+                            <input matInput (input)="passwordRepeatRegister=$event.target.value" id="passwordRepeatRegister" 
+                            [formControl]="passwordRepeatRegisterForm" required>
+                            <mat-error *ngIf="passwordRepeatRegisterForm.invalid">{{getErrorMessagepwRR()}}</mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="wrapper">
+                            <button type="submit" mat-raised-button color="primary" (click)="register()"
+                            [disabled]="loginRegisterForm.invalid || passwordRegisterForm.invalid">Inscription</button>
+                        </div>
                     </td>
                 </tr>
             </table>
