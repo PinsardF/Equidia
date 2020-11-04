@@ -13,6 +13,7 @@ export interface Reprise {
   templateUrl: './reprises.component.html',
   styleUrls: ['./reprises.component.css']
 })
+
 export class ReprisesComponent implements OnInit {
 
   levelForm = new FormControl();
@@ -25,6 +26,7 @@ export class ReprisesComponent implements OnInit {
   machin: string;
   before: Date = null;
   after: Date = null;
+  displayedColumns: string[] = ['date', 'hour', 'level', 'instructor'];
 
   constructor() { }
 

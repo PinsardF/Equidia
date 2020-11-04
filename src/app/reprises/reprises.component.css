@@ -66,3 +66,7 @@ h4 {
     min-width: 60px;
   }
 }
+table {
+  width: 80%;
+  /*text-align: center;*/
+}

@@ -3,6 +3,7 @@
         <nav>
             <a routerLink="/reprises" class="module">Reprises</a>
             <a routerLink="/moncompte" class="module">Mon compte</a>
+            <a routerLink="/chevaux" class="module">Gestion des chevaux</a>
         </nav>
     </div>
 </div>
@@ -70,6 +71,7 @@
             <tr>
                 <td>
                     <button type="submit" mat-raised-button color="primary" (click)="validate()"
+                        style="display: block;margin: auto;"
                         [disabled]="firstNameForm.invalid || lastNameForm.invalid || emailForm.invalid || phoneForm.invalid">
                     Valider</button>
                 </td>
