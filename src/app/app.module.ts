@@ -18,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HorsesComponent } from './horses/horses.component';
 import { MatTableModule } from '@angular/material/table';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatTableModule } from '@angular/material/table';
     HomeComponent,
     ReprisesComponent,
     MyAccountComponent,
-    HorsesComponent
+    HorsesComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
