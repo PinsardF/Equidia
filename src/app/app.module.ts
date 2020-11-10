@@ -20,6 +20,8 @@ import { MatTableModule } from '@angular/material/table';
 import { AdminComponent } from './admin/admin.component';
 import { GetPasswordComponent } from './get-password/get-password.component';
 import { UsersResultsComponent } from './users-results/users-results.component';
+import { ReprisesResultsComponent } from './reprises-results/reprises-results.component';
+import { ManageReprisesComponent } from './manage-reprises/manage-reprises.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { UsersResultsComponent } from './users-results/users-results.component';
     HorsesComponent,
     AdminComponent,
     GetPasswordComponent,
-    UsersResultsComponent
+    UsersResultsComponent,
+    ReprisesResultsComponent,
+    ManageReprisesComponent
   ],
   imports: [
     BrowserModule,

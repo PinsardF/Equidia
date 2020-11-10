@@ -98,7 +98,7 @@ export class AdminComponent implements OnInit {
     //REQUEST : SELECT * FROM users WHERE users.role = "admin" AND (first_name LIKE [?] OR last_name LIKE [?]
     //OR email LIKE [?] OR phone LIKE [?] OR license LIKE [?])
     alert('Recherche d\'admin avec ' + this.adminSearch);
-    this.router.navigate(['/resultats'])
+    this.router.navigate(['/resultatsUtilisateurs'])
   }
 
   getErrorMessagemonFN() {
@@ -135,14 +135,14 @@ export class AdminComponent implements OnInit {
     //REQUEST : SELECT * FROM users WHERE users.role = "monitor" AND (first_name LIKE [?] OR last_name LIKE [?]
     //OR email LIKE [?] OR phone LIKE [?] OR license LIKE [?])
     alert('Recherche de moniteur avec ' + this.monitorSearch);
-    this.router.navigate(['/resultats'])
+    this.router.navigate(['/resultatsUtilisateurs'])
   }
 
   searchUser() {
     //REQUEST : SELECT * FROM users WHERE users.role = "user" AND (first_name LIKE [?] OR last_name LIKE [?]
     //OR email LIKE [?] OR phone LIKE [?] OR license LIKE [?])
     alert('Recherche de cavalier avec ' + this.userSearch);
-    this.router.navigate(['/resultats'])
+    this.router.navigate(['/resultatsUtilisateurs'])
   }
 
 }

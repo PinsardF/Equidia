@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { VirtualTimeScheduler } from 'rxjs';
+import { Router } from '@angular/router';
 
 export interface Reprise {
   date: string;
   hour: string;
   level: string;
   instructor: string;
+  id: string;
 }
 
 @Component({
@@ -36,12 +37,13 @@ export class ReprisesComponent implements OnInit {
   beginning: string;
   end: Date = null;
   displayedColumns: string[] = ['date', 'hour', 'level', 'instructor'];
+  gestionColumns: string[] = ['date', 'hour', 'level', 'instructor', 'manage'];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.dataList = [{date: '24/08', hour: '18h', level: 'Niveau 2', instructor: 'Avec Julien Frimas'},
-    {date: '24/08', hour: '18h30', level: 'Niveau 3', instructor: 'Avec Julien Frimas'}];
+    this.dataList = [{date: '24/08', hour: '18h', level: 'Niveau 2', instructor: 'Avec Julien Frimas', id:'2'},
+    {date: '24/08', hour: '18h30', level: 'Niveau 3', instructor: 'Avec Julien Frimas', id:'5'}];
   }
 
   search() {
@@ -57,6 +59,8 @@ export class ReprisesComponent implements OnInit {
     }
     alert("Niveaux: " + this.selectedLevels + ", moniteurs: " + this.selectedMonitors + ", avant le " + beforeTest
     + " et après le " + afterTest);
+    this.router.navigate(['/resultatsReprises']);
+    
   }
 
   getErrorMessageParticipants() {
@@ -83,5 +87,10 @@ export class ReprisesComponent implements OnInit {
     var hour = this.beginning.substr(11,2);
     var minutes = this.beginning.substr(14,2)
     alert('Nouvelle leçon créée le ' + day + '/' + month + '/' + year + ' à ' + hour + 'H' + minutes);
+  }
+
+  manage(id: string) {
+    alert('Gestion reprise ' + id);
+    this.router.navigate(['/gestionReprises']);
   }
 }

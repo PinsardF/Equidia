@@ -7,6 +7,8 @@ import { HorsesComponent } from './horses/horses.component';
 import { AdminComponent } from './admin/admin.component';
 import { GetPasswordComponent } from './get-password/get-password.component';
 import { UsersResultsComponent } from './users-results/users-results.component';
+import { ReprisesResultsComponent } from './reprises-results/reprises-results.component';
+import { ManageReprisesComponent } from './manage-reprises/manage-reprises.component';
 
 const routes: Routes = [{ path: '', redirectTo: '/connection', pathMatch: 'full' },
 { path: 'connection', component: ConnectionComponent },
@@ -15,7 +17,9 @@ const routes: Routes = [{ path: '', redirectTo: '/connection', pathMatch: 'full'
 { path: 'chevaux', component: HorsesComponent },
 { path: 'admin', component: AdminComponent },
 { path: 'motdepasse', component: GetPasswordComponent },
-{ path: 'resultats', component: UsersResultsComponent }];
+{ path: 'resultatsUtilisateurs', component: UsersResultsComponent },
+{ path: 'resultatsReprises', component: ReprisesResultsComponent },
+{ path: 'gestionReprises', component: ManageReprisesComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
