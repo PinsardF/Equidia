@@ -17,7 +17,7 @@
         <table>
             <tr>
                 <td>
-                    <h1>Mes reprises</h1>
+                    <h1>Inscriptions</h1>
                     <table mat-table [dataSource]=dataList class="mat-elevation-z8" style="margin-left:auto;margin-right:auto;">
                         <ng-container matColumnDef="date">
                             <th mat-header-cell *matHeaderCellDef>Date</th>
@@ -109,12 +109,41 @@
                         </mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
+
                     <button mat-raised-button color="primary" (click)="search()"
                     style="display: block;margin: auto;">Rechercher</button>
+                </td>
+            </tr>
+        </table>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2"></mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2"></mat-grid-tile>
+    <mat-grid-tile [colspan]="10" [rowspan]="2">
+        <table>
+            <tr>
+                <td>
+                    <h1>Créer une reprise</h1>
+                    <mat-form-field appearance="fill" style="margin:5px;">
+                        <mat-label>Niveau</mat-label>
+                        <mat-select [formControl]="levelForm" [(ngModel)]="selectedLevel">
+                            <mat-option *ngFor="let level of levelList2" [value]="level">{{level}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard">
+                        <mat-label>Nombre de participants</mat-label>
+                        <input matInput (input)="participants=$event.target.value" id="participants" 
+                        [formControl]="participantsForm" required>
+                        <mat-error *ngIf="participantsForm.invalid">{{getErrorMessageParticipants()}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance = "fill">
+                        <mat-label>Date et heure</mat-label>
+                        <input matInput type="datetime-local" [(ngModel)]="beginning">
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" (click)="createLesson()"
+                    style="display: block;margin: auto;">Créer une reprise</button>
                 </td>
             </tr>
         </table>

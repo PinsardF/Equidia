@@ -89,6 +89,7 @@ export class AdminComponent implements OnInit {
   }
 
   addAdmin() {
+    //REQUEST : INSERT INTO users (first_name, last_name, email, password, phone, license) VALUES ()
     alert('Nouvel admin créé : ' + this.adminFirstName + ' ' + this.adminLastName + ' ' + this.adminEmail + 
     ' ' + this.adminPhone + ' ' + this.adminLicense);
   }
@@ -125,6 +126,7 @@ export class AdminComponent implements OnInit {
   }
 
   addMonitor() {
+    //REQUEST : INSERT INTO users (first_name, last_name, email, password, phone, license) VALUES ()
     alert('Nouvel admin créé : ' + this.monitorFirstName + ' ' + this.monitorLastName + ' ' + this.monitorEmail + 
     ' ' + this.monitorPhone + ' ' + this.monitorLicense);
   }

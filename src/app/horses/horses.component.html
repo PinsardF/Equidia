@@ -12,8 +12,8 @@
 <router-outlet></router-outlet>
 
 <mat-grid-list cols="12">
-    <mat-grid-tile [colspan]="2" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="8"  [rowspan]="2">
+    <mat-grid-tile [colspan]="1" [rowspan]="3"></mat-grid-tile>
+    <mat-grid-tile [colspan]="10"  [rowspan]="3">
         <table>
             <tr>
                 <td>
@@ -34,6 +34,30 @@
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Nom</mat-label>
+                        <input matInput (input)="horseName=$event.target.value" id="horseName" 
+                        [formControl]="horseNameForm" required>
+                        <mat-error *ngIf="horseNameForm.invalid">{{getErrorMessageName()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Niveau</mat-label>
+                        <input matInput (input)="horseLevel=$event.target.value" id="horseLevel" 
+                        [formControl]="horseLevelForm" required>
+                        <mat-error *ngIf="horseLevelForm.invalid">{{getErrorMessageLevel()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Age</mat-label>
+                        <input matInput (input)="horseAge=$event.target.value" id="horseAge" 
+                        [formControl]="horseAgeForm" required>
+                        <mat-error *ngIf="horseAgeForm.invalid">{{getErrorMessageAge()}}</mat-error>
+                    </mat-form-field>
+                    <button type="submit" mat-raised-button color="primary" (click)="addHorse()"
+                    [disabled]="horseNameForm.invalid || horseLevelForm.invalid || horseAgeForm.invalid">Nouveau cheval</button>
                 </td>
             </tr>
         </table>
