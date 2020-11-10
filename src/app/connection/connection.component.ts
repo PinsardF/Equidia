@@ -34,6 +34,11 @@ export class ConnectionComponent implements OnInit {
   ngOnInit(): void { }
 
   connect(): void {
+    //REQUEST : SELECT email FROM users WHERE (email = [?] AND password = [?]) OR (email = [?] AND phone = [?])
+    //Sinon
+    //REQUEST  : SELECT errors FROM users WHERE email = [?] OR phone = [?]
+    //errors++;
+    //REQUEST : UPDATE users SET errors = [?] WHERE email = [?] OR phone = [?]
     alert("Connexion avec le login " + this.loginConnection + " et le mdp " + this.passwordConnection)
     this.router.navigate(['/reprises'])
   }
@@ -42,10 +47,12 @@ export class ConnectionComponent implements OnInit {
     if(this.passwordRegister != this.passwordRepeatRegister) {
       alert("Les mots de passe ne correspondent pas")
     } else {
+      //REQUEST : INSERT INTO users (email, first_name, last_name, password, phone, license, errors) VALUES ()
+      //avec errors = 0  
       alert("Inscription avec le login " + this.loginRegister + ", le mdp " + this.passwordRegister + ", le prénom "
       + this.firstNameRegister + ", le nom " + this.lastNameRegister + ", le téléphone " + this.phoneRegister
       + " et la licence " + this.licenseRegister);
-      this.router.navigate(['/reprises'])
+      this.router.navigate(['/reprises']);
     }
   }
 

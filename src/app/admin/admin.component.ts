@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 export interface Member {
   firstName: string;
@@ -21,11 +22,14 @@ export class AdminComponent implements OnInit {
   adminEmailForm = new FormControl('', [Validators.required, Validators.email]);
   adminPhoneForm = new FormControl('', [Validators.required, Validators.pattern("[0-9]{10}")]);
   adminLicenseForm = new FormControl('', []);
+  adminSearchForm = new FormControl('', [Validators.required]);
   monitorFirstNameForm = new FormControl('', [Validators.required]);
   monitorLastNameForm = new FormControl('', [Validators.required]);
   monitorEmailForm = new FormControl('', [Validators.required, Validators.email]);
   monitorPhoneForm = new FormControl('', [Validators.required, Validators.pattern("[0-9]{10}")]);
   monitorLicenseForm = new FormControl('', []);
+  monitorSearchForm = new FormControl('', [Validators.required]);
+  userSearchForm = new FormControl('', [Validators.required]);
 
 
   adminFirstName: string;
@@ -33,18 +37,21 @@ export class AdminComponent implements OnInit {
   adminEmail: string;
   adminPhone: string;
   adminLicense: string;
+  adminSearch: string;
   monitorFirstName: string;
   monitorLastName: string;
   monitorEmail: string;
   monitorPhone: string;
   monitorLicense: string;
+  monitorSearch: string;
+  userSearch: string;
 
   adminList: Member[];
   monitorList: Member[];
   userList: Member[];
   DisplayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone', 'license'];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.adminList = [{firstName: 'Jean', lastName: 'Kadar', email: 'kadar@et.esiea.fr', phone: '0741442585', license: ''},
@@ -86,6 +93,13 @@ export class AdminComponent implements OnInit {
     ' ' + this.adminPhone + ' ' + this.adminLicense);
   }
 
+  searchAdmin() {
+    //REQUEST : SELECT * FROM users WHERE users.role = "admin" AND (first_name LIKE [?] OR last_name LIKE [?]
+    //OR email LIKE [?] OR phone LIKE [?] OR license LIKE [?])
+    alert('Recherche d\'admin avec ' + this.adminSearch);
+    this.router.navigate(['/resultats'])
+  }
+
   getErrorMessagemonFN() {
     if (this.monitorFirstNameForm.hasError('required')) {
       return 'Le prénom entré n\'est pas valide';
@@ -113,6 +127,20 @@ export class AdminComponent implements OnInit {
   addMonitor() {
     alert('Nouvel admin créé : ' + this.monitorFirstName + ' ' + this.monitorLastName + ' ' + this.monitorEmail + 
     ' ' + this.monitorPhone + ' ' + this.monitorLicense);
+  }
+
+  searchMonitor() {
+    //REQUEST : SELECT * FROM users WHERE users.role = "monitor" AND (first_name LIKE [?] OR last_name LIKE [?]
+    //OR email LIKE [?] OR phone LIKE [?] OR license LIKE [?])
+    alert('Recherche de moniteur avec ' + this.monitorSearch);
+    this.router.navigate(['/resultats'])
+  }
+
+  searchUser() {
+    //REQUEST : SELECT * FROM users WHERE users.role = "user" AND (first_name LIKE [?] OR last_name LIKE [?]
+    //OR email LIKE [?] OR phone LIKE [?] OR license LIKE [?])
+    alert('Recherche de cavalier avec ' + this.userSearch);
+    this.router.navigate(['/resultats'])
   }
 
 }

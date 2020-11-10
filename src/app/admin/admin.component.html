@@ -12,8 +12,8 @@
 <router-outlet></router-outlet>
 
 <mat-grid-list cols="12">
-    <mat-grid-tile [colspan]="2" [rowspan]="8"></mat-grid-tile>
-    <mat-grid-tile [colspan]="8" [rowspan]="8">
+    <mat-grid-tile [colspan]="2" [rowspan]="11"></mat-grid-tile>
+    <mat-grid-tile [colspan]="8" [rowspan]="11">
         <table>
             <tr>
                 <td>
@@ -75,6 +75,22 @@
                     <button mat-raised-button color="primary" (click)="addAdmin()"
                             [disabled]="adminFirstNameForm.invalid || adminLastNameForm.invalid || 
                             adminEmailForm.invalid || adminPhoneForm.invalid">Nouvel administrateur</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Rechercher un administrateur</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Recherche</mat-label>
+                        <input matInput (input)="adminSearch=$event.target.value" id="adminSearch" 
+                        [formControl]="adminSearchForm" required>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" (click)="searchAdmin()"
+                            [disabled]="adminSearchForm.invalid">Rechercher</button>
                 </td>
             </tr>
             <tr>
@@ -141,6 +157,22 @@
             </tr>
             <tr>
                 <td>
+                    <h2>Rechercher un moniteur</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Recherche</mat-label>
+                        <input matInput (input)="monitorSearch=$event.target.value" id="monitorSearch" 
+                        [formControl]="monitorSearchForm" required>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" (click)="searchMonitor()"
+                            [disabled]="monitorSearchForm.invalid">Rechercher</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <h1>Cavaliers</h1>
                     <table mat-table [dataSource]=userList class="mat-elevation-z8" style="margin-left:auto;margin-right:auto;">
                         <ng-container matColumnDef="firstName">
@@ -166,6 +198,22 @@
                         <tr mat-header-row *matHeaderRowDef="DisplayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: DisplayedColumns;"></tr>
                     </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Rechercher un moniteur</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Recherche</mat-label>
+                        <input matInput (input)="userSearch=$event.target.value" id="userSearch" 
+                        [formControl]="userSearchForm" required>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" (click)="searchUser()"
+                            [disabled]="userSearchForm.invalid">Rechercher</button>
                 </td>
             </tr>
         </table>
