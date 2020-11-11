@@ -1,0 +1,54 @@
+<mat-grid-list cols="12">
+    <mat-grid-tile [colspan]="12" [rowspan]="2">
+        <a routerLink="/reprises" class="module">Retour à l'écran des reprises</a>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+    <mat-grid-tile [colspan]="8" [rowspan]="1">
+        <table style="text-align:center;">
+            <tr>
+                <td>
+                    <h1>Gestion de la reprise</h1>
+                </td>
+            </tr>
+        </table>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="3"></mat-grid-tile>
+    <mat-grid-tile [colspan]="8" [rowspan]="3">
+        <table mat-table [dataSource]=userList class="mat-elevation-z8" style="width:50%">
+            <ng-container matColumnDef="first_name">
+                <th mat-header-cell *matHeaderCellDef>Prénom</th>
+                <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="last_name">
+                <th mat-header-cell *matHeaderCellDef>Nom</th>
+                <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="horse">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-form-field appearance="fill" style="margin:5px;">
+                        <mat-label>Cheval</mat-label>
+                        <mat-select [formControl]="horseForm" [(ngModel)]="element.horseId">
+                            <mat-option *ngFor="let horse of horseList"
+                            [value]="horse.id" ngDefaultControl>{{horse.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="DisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: DisplayedColumns;"></tr>
+        </table>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="3"></mat-grid-tile>
+    <mat-grid-tile [colspan]="3"></mat-grid-tile>
+    <mat-grid-tile [colspan]="6">
+        <table>
+            <td>
+                <tr>
+                    <button mat-raised-button color="primary" (click)="validateLesson()">Valider la reprise</button>
+                </tr>
+            </td>
+        </table>
+    </mat-grid-tile>
+</mat-grid-list>

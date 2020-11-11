@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnectionComponent } from './connection/connection.component';
-import { HomeComponent } from './home/home.component';
 import { ReprisesComponent } from './reprises/reprises.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { MatInputModule } from '@angular/material/input';
@@ -16,14 +15,27 @@ import {MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HorsesComponent } from './horses/horses.component';
+import { MatTableModule } from '@angular/material/table';
+import { AdminComponent } from './admin/admin.component';
+import { GetPasswordComponent } from './get-password/get-password.component';
+import { UsersResultsComponent } from './users-results/users-results.component';
+import { ReprisesResultsComponent } from './reprises-results/reprises-results.component';
+import { ManageReprisesComponent } from './manage-reprises/manage-reprises.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnectionComponent,
-    HomeComponent,
     ReprisesComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    HorsesComponent,
+    AdminComponent,
+    GetPasswordComponent,
+    UsersResultsComponent,
+    ReprisesResultsComponent,
+    ManageReprisesComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +48,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatGridListModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
