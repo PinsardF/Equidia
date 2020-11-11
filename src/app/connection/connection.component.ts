@@ -11,7 +11,7 @@ export class ConnectionComponent implements OnInit {
  
   loginConnectionForm = new FormControl('', [Validators.required]);
   passwordConnectionForm = new FormControl('', [Validators.required]);
-  loginRegisterForm = new FormControl('', [Validators.required, Validators.email]);
+  loginRegisterForm = new FormControl('', [Validators.required]);
   passwordRegisterForm = new FormControl('', [Validators.required]);
   passwordRepeatRegisterForm = new FormControl('', [Validators.required]);
   firstNameRegisterForm = new FormControl('', [Validators.required]);
@@ -72,8 +72,8 @@ export class ConnectionComponent implements OnInit {
     if (this.loginRegisterForm.hasError('required')) {
       return 'Vous n\'avez pas entré d\'email';
     }
-    return this.loginRegisterForm.hasError('email') ? 'L\'email entré n\'est pas valide' : '';
   }
+
   getErrorMessagepwR() {
     if (this.passwordRegisterForm.hasError('required')) {
       return 'Vous n\'avez pas entré de mot de passe';

@@ -22,6 +22,7 @@ import { GetPasswordComponent } from './get-password/get-password.component';
 import { UsersResultsComponent } from './users-results/users-results.component';
 import { ReprisesResultsComponent } from './reprises-results/reprises-results.component';
 import { ManageReprisesComponent } from './manage-reprises/manage-reprises.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ManageReprisesComponent } from './manage-reprises/manage-reprises.compo
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
