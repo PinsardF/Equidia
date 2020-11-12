@@ -12,10 +12,13 @@ class LoadDatabase {
   private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
   @Bean
-  CommandLineRunner initDatabase(CavalierRepository repository) {
+  CommandLineRunner initDatabase(UtilisateurRepository repository) {
 
     return args -> {
-      log.info("Preloading " + repository.save(new Cavalier("Nom", "Prenom", "email@orange.fr", 123, 3)));
+      log.info("Preloading " + repository.save(new Utilisateur("Nom", "Prenom", "email@orange.fr",
+        "admin", "0123456789", 3,1052, "email@orange.fr", "123")));
+      log.info("Preloading " + repository.save(new Utilisateur("Delafontaine", "Jean", "fontaine@orange.fr",
+        "superadmin", "0987654321", 7,12, "fontaine@orange.fr", "12345")));
     };
   }
 }
