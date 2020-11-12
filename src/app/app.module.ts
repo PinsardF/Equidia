@@ -23,7 +23,6 @@ import { UsersResultsComponent } from './users-results/users-results.component';
 import { ReprisesResultsComponent } from './reprises-results/reprises-results.component';
 import { ManageReprisesComponent } from './manage-reprises/manage-reprises.component';
 import { MatCardModule } from '@angular/material/card';
-import { ItemsModule } from './modules/application/items/items.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -38,7 +37,6 @@ import { HttpClientModule } from '@angular/common/http';
     UsersResultsComponent,
     ReprisesResultsComponent,
     ManageReprisesComponent
-    //ItemsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'angular-starter' }),
@@ -54,7 +52,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatNativeDateModule,
     MatTableModule,
     MatCardModule,
-    ItemsModule,
     HttpClientModule
   ],
   providers: [],
