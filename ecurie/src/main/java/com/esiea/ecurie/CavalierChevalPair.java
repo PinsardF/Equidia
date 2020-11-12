@@ -2,43 +2,54 @@ package com.esiea.ecurie;
 
 import java.util.Objects;
 
-public class UtilisateurCavalierPair {
+public class CavalierChevalPair {
 
-  private Long utilisateurId;
-  private Long chevalId;
+  private Utilisateur cavalier;
+  private Cheval cheval;
 
-  UtilisateurCavalierPair() {}
+  CavalierChevalPair() {}
 
-  UtilisateurCavalierPair(Long utilisateurId, Long chevalId) {
-    this.utilisateurId = utilisateurId;
-    this.chevalId = chevalId;
+  CavalierChevalPair(Utilisateur cavalier, Cheval cheval) {
+    this.cavalier = cavalier;
+    this.cheval = cheval;
   }
 
-  public Long getUtilisateurId() {return this.utilisateurId;}
-  public Long getChevalIda() {return this.chevalId;}
+  public Cheval getCheval() {
+    return cheval;
+  }
+  public Utilisateur getCavalier() {
+    return cavalier;
+  }
 
-  public void setUtilisateurId(Long utilisateurId) {this.utilisateurId = utilisateurId;}
-  public void setChevalId(Long chevalId) {this.chevalId = chevalId;}
+  public void setCavalier(Utilisateur cavalier) {
+    this.cavalier = cavalier;
+  }
+  public void setCheval(Cheval cheval) {
+    this.cheval = cheval;
+  }
 
   @Override
   public boolean equals(Object o) {
 
     if (this == o)
       return true;
-    if (!(o instanceof UtilisateurCavalierPair))
+
+    if (!(o instanceof CavalierChevalPair))
       return false;
-    UtilisateurCavalierPair utilisateurCavalierPair = (UtilisateurCavalierPair) o;
-    return Objects.equals(this.utilisateurId, utilisateurCavalierPair.utilisateurId)
-      && Objects.equals(this.chevalId, utilisateurCavalierPair.chevalId);
+
+    CavalierChevalPair cavalierChevalPair = (CavalierChevalPair) o;
+    return this.cavalier.equals(cavalierChevalPair.cavalier) &&
+      this.cheval.equals(cavalierChevalPair.cheval);
   }
 
   @Override
-  public int hashCode() { return Objects.hash(this.utilisateurId, this.chevalId);}
+  public int hashCode() { return Objects.hash(this.cavalier, this.cheval);}
 
   @Override
   public String toString(){
-    return "UtilisateurCavalierPair{utilisateurId='" + this.utilisateurId + '\'' +
-      ", chevalId=" + this.chevalId +
+    return "CavalierChevalPair{" +
+      this.cavalier.toString() +
+      this.cheval.toString() +
       "}";
   }
 }

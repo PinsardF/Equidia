@@ -1,8 +1,8 @@
 package com.esiea.ecurie;
 
-class CavalierNotFoundException extends RuntimeException {
+class UtilisateurNotFoundException extends RuntimeException {
 
-    CavalierNotFoundException(Long id){
-        super("Impossible de trouver le cavalier " + id);
+    UtilisateurNotFoundException(Long id){
+        super("Impossible de trouver l'utilisateur " + id);
     }
 }
