@@ -21,6 +21,8 @@ export interface Horse {
 })
 export class ManageReprisesComponent implements OnInit {
 
+  role: string;
+
   horseForm = new FormControl();
   userList: User[];
   horseList: Horse[];
@@ -29,6 +31,8 @@ export class ManageReprisesComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.role = sessionStorage.getItem("role");
+    this.role = "admin";//A SUPPRIMER
     this.userList = [{first_name: 'Olga', last_name: 'Orville', id: '28', horseId: 0},
     {first_name: 'Francis', last_name: 'Bacon', id: '29', horseId: 0},
     {first_name: 'Deborah', last_name: 'Illia', id: '120', horseId: 0}];

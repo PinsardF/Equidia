@@ -14,6 +14,8 @@ export interface Horse {
 })
 export class HorsesComponent implements OnInit {
 
+  role: string;
+
   horseNameForm = new FormControl('', [Validators.required]);
   horseName: string;
   horseLevelForm = new FormControl('', [Validators.required, Validators.pattern("[1-7]")]);
@@ -26,6 +28,8 @@ export class HorsesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.role = sessionStorage.getItem("role");
+    this.role = "superadmin";
     this.horseList = [{name: 'Ponpon', level: '3', age: '5'}, {name: 'Tempête', level: '6', age: '10'},
       {name: 'Sunshine', level: '1', age: '3'}];
   }

@@ -16,12 +16,18 @@ export interface Reprise {
 })
 export class ReprisesResultsComponent implements OnInit {
 
+  role: string;
   resultList: Reprise[];
   DisplayedColumns: string[] = ['date', 'hour', 'level', 'instructor', 'subscription'];
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.role = sessionStorage.getItem("role");
+    this.role='cavalier';//A SUPPRIMER
+    if (this.role == 'moniteur') {
+      this.DisplayedColumns = ['date', 'hour', 'level', 'instructor'];
+    }
     this.resultList = [{date: '10/04/2021', hour: '12:30', level: '5', instructor: 'George Sand', id: '28'},
     {date: '11/04/2021', hour: '12:30', level: '5', instructor: 'George Sand', id:'147'},
     {date: '11/04/2021', hour: '18:30', level: '6', instructor: 'Didier Malin', id: '148'}]
@@ -29,7 +35,7 @@ export class ReprisesResultsComponent implements OnInit {
 
   subscribe(id: string) {
     //REQUEST : INSERT INTO subscriptions (userId, lessonId) VALUES ()
-    console.log(id);
+    alert("Inscription au cours " + id);
     this.router.navigate(['/reprises']);
   }
 

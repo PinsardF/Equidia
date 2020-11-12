@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-password',
@@ -11,13 +12,14 @@ export class GetPasswordComponent implements OnInit {
   emailForm = new FormControl('', [Validators.required, Validators.email]);
   email: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   send() {
     alert('Nouveau mdp sur l\'adresse ' + this.email);
+    this.router.navigate(['/connection'])
   }
 
   getErrorMessage() {

@@ -19,7 +19,8 @@ const routes: Routes = [{ path: '', redirectTo: '/connection', pathMatch: 'full'
 { path: 'motdepasse', component: GetPasswordComponent },
 { path: 'resultatsUtilisateurs', component: UsersResultsComponent },
 { path: 'resultatsReprises', component: ReprisesResultsComponent },
-{ path: 'gestionReprises', component: ManageReprisesComponent }];
+{ path: 'gestionReprises', component: ManageReprisesComponent },
+{ path: '*', redirectTo: '/connection', pathMatch: 'full' }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

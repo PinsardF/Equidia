@@ -28,6 +28,10 @@
                     <button type="submit" mat-raised-button color="primary" (click)="connect()"
                             [disabled]="loginConnectionForm.invalid || passwordConnectionForm.invalid">Connexion</button>
                 </div>
+                <div class="wrapper">
+                    <a routerLink="/motdepasse" 
+                    style="display:flex;justify-content: center;align-items:center;color:cadetblue;">Mot de passe oublié</a>
+                </div>
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>

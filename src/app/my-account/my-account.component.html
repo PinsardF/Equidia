@@ -1,82 +1,75 @@
-<div class="col s8 offset-s2">
+<div class="col s8 offset-s2" *ngIf="role=='cavalier'||role=='moniteur'||role=='admin'||role=='superadmin'">
     <div class="grid grid-pad">
         <nav>
-            <a routerLink="/reprises" class="module">Reprises</a>
+            <a routerLink="/reprises" class="module" *ngIf="role=='cavalier'||role=='moniteur'">Reprises</a>
             <a routerLink="/moncompte" class="module">Mon compte</a>
-            <a routerLink="/chevaux" class="module">Gestion des chevaux</a>
-            <a routerLink="/admin" class="module">Administration</a>
+            <a routerLink="/chevaux" class="module" *ngIf="role=='admin'||role=='superadmin'">Gestion des chevaux</a>
+            <a routerLink="/admin" class="module" *ngIf="role=='admin'||role=='superadmin'">Administration</a>
+            <a routerLink="/connection" class="module">Se Déconnecter</a>
         </nav>
     </div>
 </div>
 
 <router-outlet></router-outlet>
 
-<mat-grid-list cols="12">
-    <mat-grid-tile [colspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="8" [rowspan]="4">
-        <form>
-            <tr>
-                <td>
+<mat-grid-list cols="12" *ngIf="role=='cavalier'||role=='moniteur'||role=='admin'||role=='superadmin'" 
+rowHeight="90%">
+    <mat-grid-tile [colspan]="4"></mat-grid-tile>
+    <mat-grid-tile [colspan]="4">
+        <mat-card style="width:50%;height:500px">
+            <mat-card-header style="display: inline;">
+                <div class="wrapper">
                     <h1>Mon Compte</h1>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="wrapper">
                     <mat-form-field appearance="standard">
                         <mat-label>Prénom</mat-label>
                         <input matInput [(ngModel)]="first_name" id="first_name" 
                         [formControl]="firstNameForm" required>
                         <mat-error *ngIf="firstNameForm.invalid">{{getErrorMessageFirstName()}}</mat-error>
                     </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+                <div class="wrapper">
                     <mat-form-field appearance="standard">
                         <mat-label>Nom de famille</mat-label>
                         <input matInput [(ngModel)]="last_name" id="last_name" 
                         [formControl]="lastNameForm" required>
                         <mat-error *ngIf="lastNameForm.invalid">{{getErrorMessageLastName()}}</mat-error>
                     </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+                <div class="wrapper">
                     <mat-form-field appearance="standard">
                         <mat-label>Email</mat-label>
                         <input matInput [(ngModel)]="email" id="email" 
                         [formControl]="emailForm" required>
                         <mat-error *ngIf="emailForm.invalid">{{getErrorMessageEmail()}}</mat-error>
                     </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+                <div class="wrapper">
                     <mat-form-field appearance="standard">
                         <mat-label>Téléphone</mat-label>
                         <input matInput [(ngModel)]="phone" id="phone" 
                         [formControl]="phoneForm" required>
                         <mat-error *ngIf="phoneForm.invalid">{{getErrorMessagePhone()}}</mat-error>
                     </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+                <div class="wrapper">
                     <mat-form-field appearance="standard">
                         <mat-label>Numéro de licence</mat-label>
                         <input matInput [(ngModel)]="license_number" id="license_number" 
                         [formControl]="licenseForm">
                     </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+                <div class="wrapper">
                     <button type="submit" mat-raised-button color="primary" (click)="validate()"
                         style="display: block;margin: auto;"
                         [disabled]="firstNameForm.invalid || lastNameForm.invalid || emailForm.invalid || phoneForm.invalid">
                     Valider</button>
-                </td>
-            </tr>
-        </form>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </mat-grid-tile>
+    <mat-grid-tile [colspan]="4"></mat-grid-tile>
 </mat-grid-list>

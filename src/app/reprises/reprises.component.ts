@@ -18,8 +18,7 @@ export interface Reprise {
 
 export class ReprisesComponent implements OnInit {
 
-  isCavalier: Boolean = false;
-  isMoniteur: Boolean = false;
+  role: string;
 
   searchLevelForm = new FormControl();
   searchMonitorForm = new FormControl();
@@ -46,8 +45,8 @@ export class ReprisesComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.isMoniteur = true;
-    //this.isCavalier = true;
+    this.role = sessionStorage.getItem("role");
+    this.role='moniteur';//A SUPPRIMER
     this.dataList = [{date: '24/08', hour: '18h', level: 'Niveau 2', instructor: 'Avec Julien Frimas', id:'2'},
     {date: '24/08', hour: '18h30', level: 'Niveau 3', instructor: 'Avec Julien Frimas', id:'5'},
     {date: '24/08', hour: '18h30', level: 'Niveau 3', instructor: 'Avec Julien Frimas', id:'6'},

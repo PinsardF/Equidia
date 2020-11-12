@@ -1,163 +1,17 @@
-<div class="col s8 offset-s2">
+<div class="col s8 offset-s2" *ngIf="role=='cavalier'||role=='moniteur'">
     <div class="grid grid-pad">
         <nav>
             <a routerLink="/reprises" class="module">Reprises</a>
             <a routerLink="/moncompte" class="module">Mon compte</a>
-            <a routerLink="/chevaux" class="module">Gestion des chevaux</a>
-            <a routerLink="/admin" class="module">Administration</a>
+            <a routerLink="/connection" class="module">Se Déconnecter</a>
         </nav>
     </div>
 </div>
 
 <router-outlet></router-outlet>
-<!--
-<mat-grid-list cols="12">
-    <mat-grid-tile [colspan]="3" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="6" [rowspan]="2">
-        <table>
-            <tr>
-                <td>
-                    <h1>Reprises à venir</h1>
-                    <table mat-table [dataSource]=dataList class="mat-elevation-z8" style="margin-left:auto;margin-right:auto;">
-                        <ng-container matColumnDef="date">
-                            <th mat-header-cell *matHeaderCellDef>Date</th>
-                            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="hour">
-                            <th mat-header-cell *matHeaderCellDef>Horaire</th>
-                            <td mat-cell *matCellDef="let element"> {{element.hour}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="level">
-                            <th mat-header-cell *matHeaderCellDef>Niveau</th>
-                            <td mat-cell *matCellDef="let element"> {{element.level}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="instructor">
-                            <th mat-header-cell *matHeaderCellDef>Moniteur</th>
-                            <td mat-cell *matCellDef="let element"> {{element.instructor}} </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="6" [rowspan]="2">
-        <table>
-            <tr>
-                <td>
-                    <h1>Gestion des reprises créées</h1>
-                    <table mat-table [dataSource]=dataList class="mat-elevation-z8" style="margin-left:auto;margin-right:auto;">
-                        <ng-container matColumnDef="date">
-                            <th mat-header-cell *matHeaderCellDef>Date</th>
-                            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="hour">
-                            <th mat-header-cell *matHeaderCellDef>Horaire</th>
-                            <td mat-cell *matCellDef="let element"> {{element.hour}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="level">
-                            <th mat-header-cell *matHeaderCellDef>Niveau</th>
-                            <td mat-cell *matCellDef="let element"> {{element.level}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="instructor">
-                            <th mat-header-cell *matHeaderCellDef>Moniteur</th>
-                            <td mat-cell *matCellDef="let element"> {{element.instructor}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="manage">
-                            <th mat-header-cell *matHeaderCellDef></th>
-                            <td mat-cell *matCellDef="let element">
-                                <button type="submit" mat-raised-button color="primary" (click)="manage(element.id)">Finaliser</button>
-                            </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="gestionColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: gestionColumns;"></tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="1"></mat-grid-tile>
-    <mat-grid-tile [colspan]="10" [rowspan]="2">
-        <table>
-            <tr>
-                <td>
-                    <h1>Rechercher des reprises</h1>
-                    <mat-form-field appearance="fill" style="margin:5px;">
-                        <mat-label>Niveau</mat-label>
-                        <mat-select [formControl]="levelForm" [(ngModel)]="selectedLevels" multiple>
-                            <mat-option *ngFor="let level of levelList" [value]="level">{{level}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
 
-                    <mat-form-field appearance="fill" style="margin:5px;">
-                        <mat-label>Moniteur</mat-label>
-                        <mat-select [formControl]="monitorForm" [(ngModel)]="selectedMonitors" multiple>
-                            <mat-option *ngFor="let monitor of monitorList" [value]="monitor">{{monitor}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    
-                    <mat-form-field class="example-full-width" appearance="fill" style="margin:5px;">
-                        <mat-label>Avant Le</mat-label>
-                        <input matInput [matDatepicker]="picker" [(ngModel)]="before">
-                        <mat-datepicker-toggle matSuffix [for]="picker">
-                        </mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-
-                    <mat-form-field class="example-full-width" appearance="fill" style="margin:5px;">
-                        <mat-label>Après Le</mat-label>
-                        <input matInput [matDatepicker]="picker2" [(ngModel)]="after">
-                        <mat-datepicker-toggle matSuffix [for]="picker2">
-                        </mat-datepicker-toggle>
-                        <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>
-
-                    <button mat-raised-button color="primary" (click)="search()"
-                    style="display: block;margin: auto;">Rechercher</button>
-                </td>
-            </tr>
-        </table>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="10" [rowspan]="2">
-        <table>
-            <tr>
-                <td>
-                    <h1>Créer une reprise</h1>
-                    <mat-form-field appearance="fill" style="margin:5px;">
-                        <mat-label>Niveau</mat-label>
-                        <mat-select [formControl]="levelForm" [(ngModel)]="selectedLevel">
-                            <mat-option *ngFor="let level of levelList2" [value]="level">{{level}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="standard">
-                        <mat-label>Nombre de participants</mat-label>
-                        <input matInput (input)="participants=$event.target.value" id="participants" 
-                        [formControl]="participantsForm" required>
-                        <mat-error *ngIf="participantsForm.invalid">{{getErrorMessageParticipants()}}</mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field class="example-full-width" appearance = "fill">
-                        <mat-label>Date et heure</mat-label>
-                        <input matInput type="datetime-local" [(ngModel)]="beginning">
-                    </mat-form-field>
-
-                    <button mat-raised-button color="primary" (click)="createLesson()"
-                    style="display: block;margin: auto;">Créer une reprise</button>
-                </td>
-            </tr>
-        </table>
-    </mat-grid-tile>
-</mat-grid-list>
--->
 <!--ECRAN POUR LES CAVALIERS-->
-<mat-grid-list cols="12" rowHeight="450px" *ngIf="isCavalier">
+<mat-grid-list cols="12" rowHeight="450px" *ngIf="role=='cavalier'">
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="8">
         <mat-card style="width:70%;height:90%">
@@ -196,7 +50,7 @@
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list cols="12" rowHeight="300px" *ngIf="isCavalier">
+<mat-grid-list cols="12" rowHeight="300px" *ngIf="role=='cavalier'">
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="8">
         <mat-card style="width:70%;height:90%">
@@ -253,7 +107,7 @@
 </mat-grid-list>
 
 <!--ECRAN POUR LES MONITEURS-->
-<mat-grid-list cols="12" rowHeight="450px" *ngIf="isMoniteur">
+<mat-grid-list cols="12" rowHeight="450px" *ngIf="role=='moniteur'">
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="8">
         <mat-card style="width:70%;height:90%">
@@ -295,7 +149,7 @@
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list cols="12" rowHeight="300px" *ngIf="isMoniteur">
+<mat-grid-list cols="12" rowHeight="300px" *ngIf="role=='moniteur'">
     <mat-grid-tile [colspan]="6">
         <mat-card style="width:90%;height:90%">
             <mat-card-header style="display: inline;">

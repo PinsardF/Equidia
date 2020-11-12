@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../service';
 
@@ -42,19 +42,15 @@ export class ConnectionComponent implements OnInit {
   phoneRegister: string;
   licenseRegister: string;
 
-  constructor(private router: Router, private userService: UsersService, private http: HttpClient) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    let self = this;
+    //let self = this;
+    sessionStorage.setItem("role", null);
     /*
-    this.userService.getCavaliers().subscribe(function(cavaliers: Test[]) {
-      console.log(cavaliers);
-    });
-    */
     this.http.get("http://localhost:8080/cavaliers", {headers:headers}).subscribe(function(cavaliers: Test[]) {
       console.log(cavaliers);
-    });
-    //console.log(this.httpClient.get("http://localhost:8080/cavaliers", httpOptions));
+    });*/
   }
 
   connect(): void {

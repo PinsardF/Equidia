@@ -17,6 +17,8 @@ export interface Member {
 })
 export class AdminComponent implements OnInit {
 
+  role: string;
+
   adminFirstNameForm = new FormControl('', [Validators.required]);
   adminLastNameForm = new FormControl('', [Validators.required]);
   adminEmailForm = new FormControl('', [Validators.required, Validators.email]);
@@ -49,11 +51,15 @@ export class AdminComponent implements OnInit {
   adminList: Member[];
   monitorList: Member[];
   userList: Member[];
-  DisplayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone', 'license'];
+  adminDisplayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone'];
+  monitorDisplayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone', 'license'];
+  userDisplayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone', 'license'];
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.role = sessionStorage.getItem("role");
+    this.role='superadmin';//A SUPPRIMER
     this.adminList = [{firstName: 'Jean', lastName: 'Kadar', email: 'kadar@et.esiea.fr', phone: '0741442585', license: ''},
     {firstName: 'Wilfried', lastName: 'Destin', email: 'destinw@orange.fr', phone: '0649482530', license: '251'}];
     this.monitorList = [{firstName: 'Eric', lastName: 'Paolo', email: 'paoloeric@gmail.com', phone: '0728442985', license: '12'},

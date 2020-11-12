@@ -2,25 +2,13 @@ h1 {
     font-weight: bolder;
     text-align: center;
 }
-
 .wrapper {
     text-align: center;
 }
-
-.CARD {
-    display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
 .button {
     position: absolute;
     top: 50%;
-    color: #F6BE00;
-    background-color: #F6BE00;
 }
-
 .mat-card {
     background-color: rgba(255, 255, 255, 0.3);
-  }
+}

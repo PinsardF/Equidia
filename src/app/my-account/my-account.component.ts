@@ -9,6 +9,8 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class MyAccountComponent implements OnInit {
 
+  role: string;
+
   firstNameForm = new FormControl('', [Validators.required]);
   lastNameForm = new FormControl('', [Validators.required]);
   emailForm = new FormControl('', [Validators.required, Validators.email]);
@@ -24,6 +26,8 @@ export class MyAccountComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.role = sessionStorage.getItem("role");
+    this.role='cavalier';//A SUPPRIMER
     this.first_name = "Eric";
     this.last_name = "Dubois";
     this.email = "ericdubois@gmail.com";
