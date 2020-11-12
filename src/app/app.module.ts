@@ -11,7 +11,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -23,6 +23,8 @@ import { UsersResultsComponent } from './users-results/users-results.component';
 import { ReprisesResultsComponent } from './reprises-results/reprises-results.component';
 import { ManageReprisesComponent } from './manage-reprises/manage-reprises.component';
 import { MatCardModule } from '@angular/material/card';
+import { ItemsModule } from './modules/application/items/items.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,9 +38,10 @@ import { MatCardModule } from '@angular/material/card';
     UsersResultsComponent,
     ReprisesResultsComponent,
     ManageReprisesComponent
+    //ItemsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'angular-starter' }),
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -50,7 +53,9 @@ import { MatCardModule } from '@angular/material/card';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    ItemsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

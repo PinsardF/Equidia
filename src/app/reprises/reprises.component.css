@@ -4,6 +4,13 @@ h1 {
   text-align:center;
 }
 
+.wrapper {
+  text-align: center;
+}
+.mat-card {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 [class*='col-'] {
   float: left;
   padding-right: 20px;
@@ -67,6 +74,9 @@ h4 {
   }
 }
 table {
-  width: 80%;
-  /*text-align: center;*/
+  text-align: left;
+}
+
+mat-grid-tile {
+  background: lightblue;
 }

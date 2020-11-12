@@ -19,7 +19,11 @@ const routes: Routes = [{ path: '', redirectTo: '/connection', pathMatch: 'full'
 { path: 'motdepasse', component: GetPasswordComponent },
 { path: 'resultatsUtilisateurs', component: UsersResultsComponent },
 { path: 'resultatsReprises', component: ReprisesResultsComponent },
-{ path: 'gestionReprises', component: ManageReprisesComponent }];
+{ path: 'gestionReprises', component: ManageReprisesComponent },
+{ path: 'httpclient',
+  loadChildren: () => import('./modules/application/items/items.module')
+    .then(mod => mod.ItemsModule)
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

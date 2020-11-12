@@ -1,6 +1,19 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsersService } from '../service';
+
+export interface Test {
+  id: number;
+  nom: string;
+  prenom: string;
+  email: string;
+  telephone: number;
+  galop: number;
+}
+
+const headers = new HttpHeaders({'Content-Type':'application/json','Access-Control-Allow-Origin':'http://localhost:8080'});
 
 @Component({
   selector: 'app-connection',
@@ -29,9 +42,20 @@ export class ConnectionComponent implements OnInit {
   phoneRegister: string;
   licenseRegister: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UsersService, private http: HttpClient) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    let self = this;
+    /*
+    this.userService.getCavaliers().subscribe(function(cavaliers: Test[]) {
+      console.log(cavaliers);
+    });
+    */
+    this.http.get("http://localhost:8080/cavaliers", {headers:headers}).subscribe(function(cavaliers: Test[]) {
+      console.log(cavaliers);
+    });
+    //console.log(this.httpClient.get("http://localhost:8080/cavaliers", httpOptions));
+  }
 
   connect(): void {
     //REQUEST : SELECT email FROM users WHERE (email = [?] AND password = [?]) OR (email = [?] AND phone = [?])
@@ -41,6 +65,7 @@ export class ConnectionComponent implements OnInit {
     //REQUEST : UPDATE users SET errors = [?] WHERE email = [?] OR phone = [?]
     alert("Connexion avec le login " + this.loginConnection + " et le mdp " + this.passwordConnection)
     this.router.navigate(['/reprises'])
+    
   }
 
   register(): void {
