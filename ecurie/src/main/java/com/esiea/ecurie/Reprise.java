@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Reprise {
 
   private @Id @GeneratedValue Long repriseId;
-  private Utilisateur moniteur;
+  private Long moniteurId;
 
   public ArrayList<CavalierChevalPair> inscrits;  //set a public car sinon je dois créer des getter/setter pour chaque opération
 
@@ -26,8 +26,8 @@ public class Reprise {
     inscrits = new ArrayList<CavalierChevalPair>();
   }
 
-  Reprise(Utilisateur moniteur, String date){
-    this.moniteur = moniteur;
+  Reprise(Long moniteurId, String date){
+    this.moniteurId = moniteurId;
     this.date = date;
 
     finished = false;
@@ -39,8 +39,8 @@ public class Reprise {
   public Long getRepriseId() {
     return repriseId;
   }
-  public Utilisateur getMoniteur() {
-    return moniteur;
+  public long getMoniteurId() {
+    return moniteurId;
   }
   public String getDate() {
     return date;
@@ -52,8 +52,8 @@ public class Reprise {
   public void setRepriseId(Long repriseId) {
     this.repriseId = repriseId;
   }
-  public void setMoniteur(Utilisateur moniteur) {
-    this.moniteur = moniteur;
+  public void setMoniteurId(Long moniteurId) {
+    this.moniteurId = moniteurId;
   }
   public void setDate(String date) {
     this.date = date;
@@ -62,16 +62,15 @@ public class Reprise {
 
   public boolean isInscrit(Utilisateur utilisateur){
     for (CavalierChevalPair pair: this.inscrits) {
-      if (pair.getCavalier().equals(utilisateur)){
+      if (pair.getCavalierId() == utilisateur.getId()){
         return true;
       }
     }
     return false;
   }
-
   public boolean isInscrit(Cheval cheval){
     for (CavalierChevalPair pair: this.inscrits) {
-      if (pair.getCavalier().equals(cheval)){
+      if (pair.getCavalierId() == cheval.getChevalId()){
         return true;
       }
     }
@@ -87,13 +86,13 @@ public class Reprise {
       return false;
     Reprise reprise = (Reprise) o;
     return Objects.equals(this.repriseId, reprise.repriseId)
-      && this.moniteur.equals(reprise.moniteur)
+      && Objects.equals(this.moniteurId, reprise.moniteurId)
       && Objects.equals(this.date, reprise.date)
       && Objects.equals(this.finished, reprise.finished);
   }
 
   @Override
-  public int hashCode() { return Objects.hash(this.repriseId, this.moniteur, this.inscrits, this.finished, this.date, this.finished);}
+  public int hashCode() { return Objects.hash(this.repriseId, this.moniteurId, this.inscrits, this.finished, this.date, this.finished);}
 
   @Override
   public String toString(){
@@ -107,10 +106,11 @@ public class Reprise {
     temp += "}";
 
     return "Reprise{" + "id=" + this.repriseId +
-      ", moniteur='" + this.moniteur.toString() + '\'' +
+      ", moniteur='" + this.moniteurId +
       temp +
       ", date=" + this.date +
       "}";
   }
+
 
 }

@@ -1,12 +1,22 @@
 package com.esiea.ecurie;
 
+
+
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 class Controller {
 
   private final UtilisateurRepository utilisateurRepository;
@@ -71,7 +81,7 @@ class Controller {
       .orElseThrow(() -> new UtilisateurNotFoundException(id));
 
     List<Reprise> reprises = repriseRepository.findAll();
-    reprises.removeIf(o -> (!o.getMoniteur().equals(utilisateur)));
+    reprises.removeIf(o -> (o.getMoniteurId() != utilisateur.getId()));
     return reprises;
   }
   //endregion
@@ -198,7 +208,7 @@ class Controller {
 
     return repriseRepository.findById(id)
       .map(reprise -> {
-        reprise.setMoniteur(newReprise.getMoniteur());
+        reprise.setMoniteurId(newReprise.getMoniteurId());
         reprise.setDate(newReprise.getDate());
         reprise.setFinished(newReprise.isFinished());
         reprise.inscrits = newReprise.inscrits;
@@ -229,5 +239,6 @@ class Controller {
   //endregion
 
   //endregion
+
 
 }

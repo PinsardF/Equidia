@@ -4,28 +4,28 @@ import java.util.Objects;
 
 public class CavalierChevalPair {
 
-  private Utilisateur cavalier;
-  private Cheval cheval;
+  private Long cavalierId;
+  private Long chevalId;
 
   CavalierChevalPair() {}
 
-  CavalierChevalPair(Utilisateur cavalier, Cheval cheval) {
-    this.cavalier = cavalier;
-    this.cheval = cheval;
+  CavalierChevalPair(Long cavalierId, Long chevalId) {
+    this.cavalierId = cavalierId;
+    this.chevalId = chevalId;
   }
 
-  public Cheval getCheval() {
-    return cheval;
+  public Long getChevalId() {
+    return chevalId;
   }
-  public Utilisateur getCavalier() {
-    return cavalier;
+  public Long getCavalierId() {
+    return cavalierId;
   }
 
-  public void setCavalier(Utilisateur cavalier) {
-    this.cavalier = cavalier;
+  public void setCavalierId(Long cavalierId) {
+    this.cavalierId = cavalierId;
   }
-  public void setCheval(Cheval cheval) {
-    this.cheval = cheval;
+  public void setChevalId(Long chevalId) {
+    this.chevalId = chevalId;
   }
 
   @Override
@@ -38,18 +38,21 @@ public class CavalierChevalPair {
       return false;
 
     CavalierChevalPair cavalierChevalPair = (CavalierChevalPair) o;
-    return this.cavalier.equals(cavalierChevalPair.cavalier) &&
-      this.cheval.equals(cavalierChevalPair.cheval);
+    return this.cavalierId == cavalierChevalPair.getCavalierId() &&
+      this.chevalId == cavalierChevalPair.getCavalierId();
   }
 
   @Override
-  public int hashCode() { return Objects.hash(this.cavalier, this.cheval);}
+  public int hashCode() { return Objects.hash(this.cavalierId, this.chevalId);}
 
   @Override
   public String toString(){
     return "CavalierChevalPair{" +
-      this.cavalier.toString() +
-      this.cheval.toString() +
+      "CavalierId=" + this.getCavalierId() +
+      "ChevalId=" + this.getChevalId() +
       "}";
   }
+
+
+
 }
