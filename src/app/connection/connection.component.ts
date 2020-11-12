@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../manage-reprises/manage-reprises.component';
 import { UsersService } from '../service';
 
 export interface Test {
@@ -16,7 +17,7 @@ export interface Test {
   mdp: string;
 }
 
-const headers = new HttpHeaders({'Content-Type':'application/json','Access-Control-Allow-Origin':'http://localhost:8080'});
+const headers = new HttpHeaders({'Content-Type':'application/json','Access-Control-Allow-Origin':'*'});
 
 @Component({
   selector: 'app-connection',
@@ -45,15 +46,20 @@ export class ConnectionComponent implements OnInit {
   phoneRegister: string;
   licenseRegister: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     //let self = this;
     sessionStorage.setItem("role", null);
     /*
     this.http.get("http://localhost:8080/utilisateurs", {headers:headers}).subscribe(function(utilisateurs: Test[]) {
-      console.log(cavaliers);
+      console.log(utilisateurs);
     });*/
+    var test: Test = {nom: "Robert", prenom: "Jean", email: "robert@free.fr", role: "cavalier", telephone: "0123232323",
+    galop: 3, numLicense: 10, login: "robert@free.fr", mdp: "mdp"};
+    this.http.post("http://localhost:8080/utilisateurs", test, {headers:headers}).subscribe(function(utilisateurs: Test[]) {
+      //console.log(utilisateurs);
+    });
   }
 
   connect(): void {
