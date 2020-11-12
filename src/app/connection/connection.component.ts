@@ -5,12 +5,15 @@ import { Router } from '@angular/router';
 import { UsersService } from '../service';
 
 export interface Test {
-  id: number;
   nom: string;
   prenom: string;
   email: string;
-  telephone: number;
+  role: string;
+  telephone: string;
   galop: number;
+  numLicense: number;
+  login: string;
+  mdp: string;
 }
 
 const headers = new HttpHeaders({'Content-Type':'application/json','Access-Control-Allow-Origin':'http://localhost:8080'});
@@ -48,7 +51,7 @@ export class ConnectionComponent implements OnInit {
     //let self = this;
     sessionStorage.setItem("role", null);
     /*
-    this.http.get("http://localhost:8080/cavaliers", {headers:headers}).subscribe(function(cavaliers: Test[]) {
+    this.http.get("http://localhost:8080/utilisateurs", {headers:headers}).subscribe(function(utilisateurs: Test[]) {
       console.log(cavaliers);
     });*/
   }
