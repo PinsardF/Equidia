@@ -4,14 +4,20 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 export interface User {
-  first_name: string;
-  last_name: string;
-  id: string;
-  horseId: number;
+  nom: string;
+  prenom: string;
+  email: string;
+  role: string;
+  telephone: string;
+  numLicense: string;
+  galop: string;
+  mdp: string;
+  id: number;
 }
-
 export interface Horse {
-  name: string;
+  nom: string;
+  galop: string;
+  age: string;
   id: number;
 }
 export interface Paire {
@@ -44,12 +50,18 @@ export class ManageReprisesComponent implements OnInit {
     this.sessionId = sessionStorage.getItem("idReprise");
     sessionStorage.setItem("idReprise", null);
     /*
-    REQUETE A CREER
-    OBTENIR LES CAVALIERS A PARTIR DE L'ID DE LA REPRISE
-    */
+    var participantsResult;
+    this.sessionId = "17";
+    await this.http.get("http://localhost:8080/reprises/"+this.sessionId+"/participants",{headers:headers})
+      .toPromise().then(function(res) {
+        //participantsResult = res;
+        console.log(res);
+      });*/
+    //this.userList = participantsResult;
+    /*
     this.userList = [{first_name: 'Olga', last_name: 'Orville', id: '28', horseId: 0},
     {first_name: 'Francis', last_name: 'Bacon', id: '29', horseId: 0},
-    {first_name: 'Deborah', last_name: 'Illia', id: '120', horseId: 0}];
+    {first_name: 'Deborah', last_name: 'Illia', id: '120', horseId: 0}];*/
     //this.horseList = [{name: 'Petit Poney', id: 4}, {name: 'Tempete', id: 12}, {name: 'Henri', id: 20}];
     /*
     var repriseDate;
@@ -67,21 +79,22 @@ export class ManageReprisesComponent implements OnInit {
   }
 
   validateLesson() {
+    /*
     if(this.userList[0].horseId * this.userList[1].horseId * this.userList[2].horseId == 0) {
       alert('Vous n\'avez pas affecté tous les chevaux');
-    } else {
+    } else {*/
       /*
       var self = this;
       var paire: Paire;
       for (var i=0;i<this.userList.length;i++) {
-        paire = {this.horseList[i], this.userList[i]};
+        paire = {cheval:self.horseList[i],cavalier:self.userList[i]};
         this.http.post("http://localhost:8080/utilisateurs/" + this.sessionId + "/ajouterChevaux", paire, {headers:headers});
-      }*/
-     /*
+      }
+      /*
       alert(this.userList[0].first_name + ' a le cheval ' + this.userList[0].horseId + ', ' + this.userList[1].first_name
       + ':' + this.userList[1].horseId + ', ' + this.userList[2].first_name + ':' + this.userList[2].horseId);
       this.router.navigate(['/reprises']);*/
-    }
+    //}
   }
 
 }
