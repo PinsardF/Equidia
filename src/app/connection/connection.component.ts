@@ -2,18 +2,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../manage-reprises/manage-reprises.component';
-import { UsersService } from '../service';
 
-export interface Test {
+export interface User {
   nom: string;
   prenom: string;
   email: string;
   role: string;
   telephone: string;
+  numLicense: string;
   galop: number;
-  numLicense: number;
-  login: string;
+  mdp: string;
+  id: number;
+}
+export interface AddUser {
+  nom: string;
+  prenom: string;
+  email: string;
+  role: string;
+  telephone: string;
+  numLicense: string;
+  galop: number;
   mdp: string;
 }
 
@@ -58,28 +66,48 @@ export class ConnectionComponent implements OnInit {
     /*
     var test: Test = {nom: "Robert", prenom: "Jean", email: "robert@free.fr", role: "cavalier", telephone: "0123232323",
     galop: 3, numLicense: 10, login: "robert@free.fr", mdp: "mdp"};*/
-    //this.http.post("http://localhost:8080/utilisateurs", test, {headers:headers}).subscribe(function(utilisateurs: Test[]) {
+    //this.http.post("http://localhost:8080/cavaliers", test, {headers:headers}).subscribe(function(utilisateurs: Test[]) {
       //console.log(utilisateurs);
     //});
   }
 
   connect(): void {
     //REQUEST : SELECT email FROM users WHERE (email = [?] AND password = [?]) OR (email = [?] AND phone = [?])
-    //Sinon
-    //REQUEST  : SELECT errors FROM users WHERE email = [?] OR phone = [?]
-    //errors++;
-    //REQUEST : UPDATE users SET errors = [?] WHERE email = [?] OR phone = [?]
+    /*
+    var result: User();
+    var connection: Boolean = false;
+    var self = this;
+    this.http.get("http://localhost:8080/utilisateurs/" + self.loginConnection + "/" + self.passwordConnection,{headers:headers})
+      .subscribe(function(users: User[]) {
+        if (users.length > 0) {
+          result = users[0];
+          connection = true;
+        }
+      })
+    if (connection) {
+      sessionStorage.setItem("role", result.role);
+      sessionStorage.setItem("id", result.id);
+      alert("Connexion avec le login " + this.loginConnection + " et le mdp " + this.passwordConnection)
+      this.router.navigate(['/reprises']);
+    } else {
+      alert("Login ou mot de passe incorrect")
+      this.router.navigate(['/connection']);
+    }
+    */
     alert("Connexion avec le login " + this.loginConnection + " et le mdp " + this.passwordConnection)
-    this.router.navigate(['/reprises'])
-    
+    this.router.navigate(['/reprises']);
   }
 
   register(): void {
     if(this.passwordRegister != this.passwordRepeatRegister) {
       alert("Les mots de passe ne correspondent pas")
     } else {
-      //REQUEST : INSERT INTO users (email, first_name, last_name, password, phone, license, errors) VALUES ()
-      //avec errors = 0  
+      //REQUEST : INSERT INTO users (email, first_name, last_name, password, phone, license) VALUES ()
+      /*
+      var newCavalier: AddUser(this.lastNameRegister,this.firstNameRegister,this.loginRegister,"cavalier",
+      this.phoneRegister,this.licenseRegister,1,this.passwordRegister);
+      this.http.post("http://localhost:8080/utilisateurs/", newCavalier, {headers:headers});
+      */
       alert("Inscription avec le login " + this.loginRegister + ", le mdp " + this.passwordRegister + ", le prénom "
       + this.firstNameRegister + ", le nom " + this.lastNameRegister + ", le téléphone " + this.phoneRegister
       + " et la licence " + this.licenseRegister);
