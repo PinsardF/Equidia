@@ -7,7 +7,7 @@ import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
-class Reprise {
+public class Reprise {
 
   @Id
   @GeneratedValue

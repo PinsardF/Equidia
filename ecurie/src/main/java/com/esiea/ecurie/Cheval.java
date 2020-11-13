@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-class Cheval {
+public class Cheval {
 
   private @Id @GeneratedValue Long chevalId;
   private String nom;
