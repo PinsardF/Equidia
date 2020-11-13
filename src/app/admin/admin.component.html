@@ -162,7 +162,7 @@
                         <input matInput (input)="userSearch=$event.target.value" id="userSearch" 
                         [formControl]="userSearchForm" required>
                     </mat-form-field>
-                    <button mat-raised-button color="primary" (click)="searchUser()"
+                    <button mat-raised-button color="primary" (click)="searchMonitor()"
                             [disabled]="userSearchForm.invalid">Rechercher</button>
                 </div>
                 <div class="wrapper">

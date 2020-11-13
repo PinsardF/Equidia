@@ -30,17 +30,12 @@ export class ReprisesResultsComponent implements OnInit {
     if (this.role == 'moniteur') {
       this.DisplayedColumns = ['date', 'hour', 'level', 'instructor'];
     }
-    /*
-    OBTENIR LES REPRISES
-    */
     this.resultList = [{date: '10/04/2021', hour: '12:30', level: '5', instructor: 'George Sand', id: '28'},
     {date: '11/04/2021', hour: '12:30', level: '5', instructor: 'George Sand', id:'147'},
     {date: '11/04/2021', hour: '18:30', level: '6', instructor: 'Didier Malin', id: '148'}]
   }
 
   subscribe(id: string) {
-    //INSCRIRE LE CAVALIER A LA REPRISE
-    alert("Inscription au cours " + id);
     this.router.navigate(['/reprises']);
   }
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
+/*
 export interface User {
   nom: string;
   prenom: string;
@@ -12,18 +13,25 @@ export interface User {
   numLicense: string;
   galop: string;
   mdp: string;
-  id: number;
-}
+  utilisateurId: number;
+}*/
 export interface Horse {
   nom: string;
   galop: string;
   age: string;
-  id: number;
+  chevalId: number;
 }
+export interface Participant {
+  first_name: string;
+  last_name: string;
+  id: string;
+  chevalId: number;
+}
+/*
 export interface Paire {
   cheval: Horse;
   cavalier: User;
-}
+}*/
 
 const headers = new HttpHeaders({'Content-Type':'application/json','Access-Control-Allow-Origin':'*'});
 
@@ -38,7 +46,7 @@ export class ManageReprisesComponent implements OnInit {
   sessionId: string;
 
   horseForm = new FormControl();
-  userList: User[];
+  userList: Participant[];
   horseList: Horse[];
   DisplayedColumns: string[] = ['first_name', 'last_name', 'horse'];
 
@@ -46,7 +54,6 @@ export class ManageReprisesComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.role = sessionStorage.getItem("role");
-    this.role = "admin";//A SUPPRIMER
     this.sessionId = sessionStorage.getItem("idReprise");
     sessionStorage.setItem("idReprise", null);
     /*
@@ -58,11 +65,15 @@ export class ManageReprisesComponent implements OnInit {
         console.log(res);
       });*/
     //this.userList = participantsResult;
-    /*
-    this.userList = [{first_name: 'Olga', last_name: 'Orville', id: '28', horseId: 0},
-    {first_name: 'Francis', last_name: 'Bacon', id: '29', horseId: 0},
-    {first_name: 'Deborah', last_name: 'Illia', id: '120', horseId: 0}];*/
-    //this.horseList = [{name: 'Petit Poney', id: 4}, {name: 'Tempete', id: 12}, {name: 'Henri', id: 20}];
+    this.userList = [{first_name: 'Olga', last_name: 'Orville', id: '28', chevalId: 0},
+    {first_name: 'Francis', last_name: 'Bacon', id: '29', chevalId: 0},
+    {first_name: 'Deborah', last_name: 'Illia', id: '120', chevalId: 0}];
+    var chevalResult;
+      await this.http.get("http://localhost:8080/chevaux",{headers:headers})
+      .toPromise().then(function(res) {
+        chevalResult = res;
+      });
+    this.horseList = chevalResult;
     /*
     var repriseDate;
     await this.http.get("http://localhost:8080/reprises/"+this.sessionId,{headers:headers})
@@ -79,10 +90,17 @@ export class ManageReprisesComponent implements OnInit {
   }
 
   validateLesson() {
-    /*
-    if(this.userList[0].horseId * this.userList[1].horseId * this.userList[2].horseId == 0) {
-      alert('Vous n\'avez pas affecté tous les chevaux');
-    } else {*/
+    var tousAffectes = true;
+    for(var i=0;i<this.userList.length;i++) {
+      if (this.userList[i].chevalId == 0) {
+        tousAffectes = false;
+      }
+    }
+    if (!tousAffectes) {
+      alert('Vous n\'avez pas affecté un cheval à chaque participant')
+    } else {
+      this.router.navigate(['/reprises']);
+    }
       /*
       var self = this;
       var paire: Paire;
@@ -92,9 +110,7 @@ export class ManageReprisesComponent implements OnInit {
       }
       /*
       alert(this.userList[0].first_name + ' a le cheval ' + this.userList[0].horseId + ', ' + this.userList[1].first_name
-      + ':' + this.userList[1].horseId + ', ' + this.userList[2].first_name + ':' + this.userList[2].horseId);
-      this.router.navigate(['/reprises']);*/
-    //}
+      + ':' + this.userList[1].horseId + ', ' + this.userList[2].first_name + ':' + this.userList[2].horseId);*/
   }
 
 }

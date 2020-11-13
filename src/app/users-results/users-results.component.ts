@@ -9,7 +9,7 @@ export interface User {
   numLicense: string;
   galop: number;
   mdp: string;
-  id: number;
+  utilisateurId: number;
 }
 
 @Component({
@@ -42,16 +42,16 @@ export class UsersResultsComponent implements OnInit {
     this.http.get(baseUrl + search,
     {headers:headers}).subscribe(function(results: User[]) {
       this.resultList = results;
-    });
+    });*/
     sessionStorage.setItem("search", null);
     sessionStorage.setItem("searchType", null);
-    */
+
     this.resultList = [{role: 'admin', prenom: 'Eric', nom: 'Paolo', email: 'paoloeric@gmail.com',
-    telephone: '0728442985', numLicense: '12', galop: 0, mdp: 'test', id: 23},
+    telephone: '0728442985', numLicense: '12', galop: 0, mdp: 'test', utilisateurId: 23},
     {role: 'admin', prenom: 'Aude', nom: 'Chauvat', email: 'chauvata@orange.fr',
-    telephone: '0641565552', numLicense: '140', galop: 0, mdp: 'test', id: 24},
+    telephone: '0641565552', numLicense: '140', galop: 0, mdp: 'test', utilisateurId: 24},
     {role: 'admin', prenom: 'Cassandra', nom: 'Jouasse', email: 'cass@free.fr', telephone: '0630201287', numLicense: '',
-    galop: 0, mdp: 'test', id: 25}];
+    galop: 0, mdp: 'test', utilisateurId: 25}];
   }
 
 }

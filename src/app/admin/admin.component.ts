@@ -12,7 +12,7 @@ export interface User {
   numLicense: string;
   galop: string;
   mdp: string;
-  id: number;
+  utilisateurId: number;
 }
 export interface AddUser {
   nom: string;
@@ -149,17 +149,13 @@ export class AdminComponent implements OnInit {
   async searchAdmin() {
     sessionStorage.setItem("search", this.adminSearch);
     sessionStorage.setItem("searchType", "admin");
-
     /*
     var test: User[];
     await this.http.get("http://localhost:8080/administrateurs/"+this.adminSearch,{headers:headers})
     .toPromise().then(function(res) {
       //console.log(res);
     });*/
-
-    /*
-    alert('Recherche d\'admin avec ' + this.adminSearch);
-    this.router.navigate(['/resultatsUtilisateurs'])*/
+    this.router.navigate(['/resultatsUtilisateurs']);
   }
 
   getErrorMessagemonFN() {
@@ -175,7 +171,9 @@ export class AdminComponent implements OnInit {
   }
 
   getErrorMessagemonE() {
-    if (this.monitorEmailForm.hasError('required') || this.monitorEmailForm.hasError('email')) {
+    if (this.monitorEmailForm.hasError('required')) {
+      return 'Vous n\'avez pas entré d\'email';
+    } else if (this.monitorEmailForm.hasError('email')) {
       return 'L\'email entré n\'est pas valide';
     }
   }
@@ -203,17 +201,13 @@ export class AdminComponent implements OnInit {
   searchMonitor() {
     sessionStorage.setItem("search", this.monitorSearch);
     sessionStorage.setItem("searchType", "moniteur");
-    /*
-    alert('Recherche de moniteur avec ' + this.monitorSearch);
-    this.router.navigate(['/resultatsUtilisateurs']);*/
+    this.router.navigate(['/resultatsUtilisateurs']);
   }
 
   searchUser() {
     sessionStorage.setItem("search", this.userSearch);
     sessionStorage.setItem("searchType", "cavalier");
-    /*
-    alert('Recherche de cavalier avec ' + this.userSearch);
-    this.router.navigate(['/resultatsUtilisateurs']);*/
+    this.router.navigate(['/resultatsUtilisateurs']);
   }
 
 }

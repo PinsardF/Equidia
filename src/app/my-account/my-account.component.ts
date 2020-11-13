@@ -86,7 +86,6 @@ export class MyAccountComponent implements OnInit {
 
   validate() {
     /*
-    sessionStorage.setItem("id","2");
     var user: User = {prenom:this.first_name,nom:this.last_name,email:this.email,telephone:this.phone,
     numLicense:this.license_number};//avec les infos
     this.http.post("http://localhost:8080/utilisateurs/"+sessionStorage.getItem("id"),user,{headers:headers})

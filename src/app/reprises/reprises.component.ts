@@ -83,9 +83,6 @@ export class ReprisesComponent implements OnInit {
       var afterMonth = this.after.getMonth() + 1;
       afterTest = this.after.getDate().toString() + "/" + afterMonth + "/" + this.after.getFullYear(); 
     }
-    //REQUEST A FAIRE
-    alert("Niveaux: " + this.searchSelectedLevels + ", moniteurs: " + this.searchSelectedMonitors + ", avant le " + beforeTest
-    + " et après le " + afterTest);
     this.router.navigate(['/resultatsReprises']);
   }
 
@@ -118,12 +115,6 @@ export class ReprisesComponent implements OnInit {
   }
 
   async createLesson() {
-    //REQUEST : INSERT INTO lessons (hour, date, monitorId, horses) VALUES ()
-    /*
-    var newReprise: Reprise = new Reprise();
-    this.http.post("http://localhost:8080/reprises",newReprise,{headers:headers});
-    */
-
     var year = this.beginning.substr(0,4);
     var month = this.beginning.substr(5,2);
     var day = this.beginning.substr(8,2);
@@ -132,17 +123,12 @@ export class ReprisesComponent implements OnInit {
     var dateReprise = year + "/" + month + "/" + day + "/" + hour + "h" + minutes;
     var newReprise: AddReprise = {moniteurId:sessionStorage.getItem("id"),date:dateReprise,inscritMax:this.participants,
     galop:this.createSelectedLevel,finished:false};
-    await this.http.post("http://localhost:8080/reprises/",newReprise,{headers:headers})
+    await this.http.post("http://localhost:8080/reprises",newReprise,{headers:headers})
     .toPromise();
-
-    /*
-    alert('Nouvelle leçon créée le ' + day + '/' + month + '/' + year + ' à ' + hour + 'H' + minutes + ' avec '
-    + this.participants + ' participants');*/
   }
 
   manage(id: string) {
-    //sessionStorage.setItem("idReprise", id);
-    alert('Gestion reprise ' + id);
+    sessionStorage.setItem("idReprise", id);
     this.router.navigate(['/gestionReprises']);
   }
 }

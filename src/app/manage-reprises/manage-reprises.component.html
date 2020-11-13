@@ -1,9 +1,9 @@
-<mat-grid-list cols="12" rowHeight="200px" *ngIf="role=='admin'||role=='superadmin'">
+<mat-grid-list cols="12" rowHeight="200px" *ngIf="role=='moniteur'">
     <mat-grid-tile [colspan]="12">
         <a routerLink="/reprises" class="module">Retour à l'écran des reprises</a>
     </mat-grid-tile>
 </mat-grid-list>
-<mat-grid-list cols="12" rowHeight="450px" *ngIf="role=='admin'||role=='superadmin'">
+<mat-grid-list cols="12" rowHeight="450px" *ngIf="role=='moniteur'">
     <mat-grid-tile [colspan]="3"></mat-grid-tile>
     <mat-grid-tile [colspan]="6">
         <mat-card style="width:70%;height:fit;">
@@ -29,9 +29,9 @@
                             <td mat-cell *matCellDef="let element">
                                 <mat-form-field appearance="fill" style="margin:5px;">
                                     <mat-label>Cheval</mat-label>
-                                    <mat-select [formControl]="horseForm" [(ngModel)]="element.horseId">
+                                    <mat-select [formControl]="horseForm" [(ngModel)]="element.chevalId">
                                         <mat-option *ngFor="let horse of horseList"
-                                        [value]="horse.id" ngDefaultControl>{{horse.name}}</mat-option>
+                                        [value]="horse.chevalId" ngDefaultControl>{{horse.nom}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </td>

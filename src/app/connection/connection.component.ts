@@ -12,7 +12,7 @@ export interface User {
   numLicense: string;
   galop: string;
   mdp: string;
-  id: number;
+  utilisateurId: number;
 }
 export interface AddUser {
   nom: string;
@@ -53,8 +53,6 @@ export class ConnectionComponent implements OnInit {
   lastNameRegister: string;
   phoneRegister: string;
   licenseRegister: string;
-
-  resultUser: User;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -143,5 +141,4 @@ export class ConnectionComponent implements OnInit {
       return 'Le numéro de téléphone entré n\'est pas valide';
     }
   }
-
 }
