@@ -3,8 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 export interface Horse {
-  name: string;
-  level: string;
+  nom: string;
+  galop: string;
+  age: string;
+  chevalId: number;
+}
+export interface AddHorse {
+  nom: string;
+  galop: string;
   age: string;
 }
 
@@ -27,19 +33,19 @@ export class HorsesComponent implements OnInit {
   horseAgeForm = new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]);
   horseAge: string;
   horseList: Horse[];
-  displayedColumns: string[] = ['name', 'level', 'age'];
+  displayedColumns: string[] = ['nom', 'galop', 'age'];
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.role = sessionStorage.getItem("role");
-    this.role = "superadmin";
-    /*
-    this.http.get("http://localhost:8080/chevaux", {headers:headers}).subscribe(function(chevaux: Horse[]) {
-      this.horseList = chevaux;
-    });*/
-    this.horseList = [{name: 'Ponpon', level: '3', age: '5'}, {name: 'Tempête', level: '6', age: '10'},
-      {name: 'Sunshine', level: '1', age: '3'}];
+    this.role = "superadmin";//A SUPPRIMER
+    var chevalResult;
+      await this.http.get("http://localhost:8080/chevaux",{headers:headers})
+      .toPromise().then(function(res) {
+        chevalResult = res;
+      });
+    this.horseList = chevalResult;
   }
 
   getErrorMessageName() {
@@ -64,13 +70,10 @@ export class HorsesComponent implements OnInit {
     }
   }
 
-  addHorse() {
-    //REQUEST : INSERT INTO horses (name, level, age) VALUES ()
-    /*
-    var newHorse: Horse = new Horse(this.horseName,this.horseLevel,this.horseAge);
-    this.http.post("http://localhost:8080/chevaux", newHorse, {headers:headers});
-    */
-    alert('Nouveau cheval : ' + this.horseName + ' Lvl.' + this.horseLevel + ' ' + this.horseAge + ' ans');
+  async addHorse() {
+    var newHorse: AddHorse = {nom:this.horseName,galop:this.horseLevel,age:this.horseAge};
+    await this.http.post("http://localhost:8080/chevaux/",newHorse,{headers:headers})
+    .toPromise();
   }
 
 }
