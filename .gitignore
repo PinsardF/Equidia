@@ -41,6 +41,8 @@ yarn-error.log
 testem.log
 /typings
 
+./ecurie/src/main/java/com/esiea/ecurie/LoadDatabase.java 
+
 # System Files
 .DS_Store
 Thumbs.db
