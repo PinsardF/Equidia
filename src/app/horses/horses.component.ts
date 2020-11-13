@@ -39,7 +39,6 @@ export class HorsesComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.role = sessionStorage.getItem("role");
-    this.role = "superadmin";//A SUPPRIMER
     var chevalResult;
       await this.http.get("http://localhost:8080/chevaux",{headers:headers})
       .toPromise().then(function(res) {

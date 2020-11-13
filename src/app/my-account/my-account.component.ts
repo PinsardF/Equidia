@@ -2,6 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
+export interface User {
+  nom: string;
+  prenom: string;
+  email: string;
+  telephone: string;
+  numLicense: string;
+}
+
 const headers = new HttpHeaders({'Content-Type':'application/json','Access-Control-Allow-Origin':'*'});
 
 @Component({
@@ -24,21 +32,22 @@ export class MyAccountComponent implements OnInit {
   email = "";
   phone = "";
   license_number = "";
+  user: User;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem("role");
-    this.role='cavalier';//A SUPPRIMER
     /*
     var self = this;
     this.http.get("http://localhost:8080/utilisateurs/" + sessionStorage.getItem("id"),{headers:headers})
-    .subscribe(function(user: User[]) {
+    .subscribe(function(res) {
       self.first_name = user[0].prenom;
       self.last_name = user[0].nom;
       self.email = user[0].email;
       self.phone = user[0].telephone;
       self.license_number = user[0].numLicense;
+      user: res[0];
     })
     */
     this.first_name = "Eric";
@@ -77,11 +86,14 @@ export class MyAccountComponent implements OnInit {
 
   validate() {
     /*
-    var user: User = new User();//avec les infos
-    this.http.post("http://localhost:8080/utilisateurs/"+sessionStorage.getItem("id"),user,{headers:headers});
-    */
+    sessionStorage.setItem("id","2");
+    var user: User = {prenom:this.first_name,nom:this.last_name,email:this.email,telephone:this.phone,
+    numLicense:this.license_number};//avec les infos
+    this.http.post("http://localhost:8080/utilisateurs/"+sessionStorage.getItem("id"),user,{headers:headers})
+    .toPromise();*/
+   /*
     alert("Le compte possède maintenant le prénom " + this.first_name + ", le nom " + this.last_name + ", l'email " + 
-    this.email + ", le numéro de téléphone " + this.phone + " et le numéro de licence " + this.license_number);
+    this.email + ", le numéro de téléphone " + this.phone + " et le numéro de licence " + this.license_number);*/
   }
 
 }

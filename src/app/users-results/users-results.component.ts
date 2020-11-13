@@ -28,7 +28,6 @@ export class UsersResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem("role");
-    this.role = 'admin'//A SUPPRIMER
     /*
     var search = sessionStorage.getItem("search");
     var searchType = sessionStorage.getItem("searchType");
