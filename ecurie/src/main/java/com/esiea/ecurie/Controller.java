@@ -4,6 +4,7 @@ package com.esiea.ecurie;
 
 import java.util.List;
 
+import jdk.jshell.execution.Util;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -213,6 +214,28 @@ class Controller {
   Reprise oneReprise(@PathVariable Long repriseId) {
     return repriseRepository.findById(repriseId)
       .orElseThrow(() -> new RepriseNotFoundException(repriseId));
+  }
+
+  //donne la liste des participants d'une reprise
+  @GetMapping("/reprises/{repriseId}/participants")
+  List<Utilisateur> repriseParticipant(@PathVariable Long repriseId){
+    oneReprise(repriseId);
+
+    List<Utilisateur> cavaliers = allUtilisateur();
+    List<Utilisateur> returnVal = allUtilisateur();
+    returnVal.clear();
+
+    List<RepriseCavalierCheval> temp = repriseCavalierChevalRepository.findAll();
+    temp.removeIf(o -> !o.getRepriseId().equals(repriseId));
+
+    for (RepriseCavalierCheval i : temp){
+      for (Utilisateur j : cavaliers){
+        if (i.getCavalierId().equals(j.getId())){
+          returnVal.add(j);
+        }
+      }
+    }
+    return returnVal;
   }
   //endregion
 
