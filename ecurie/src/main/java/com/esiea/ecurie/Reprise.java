@@ -18,6 +18,10 @@ public class Reprise {
 
   private String date;    // format: 1970/12/31/1230
 
+  private int inscritMax;
+
+  private int galop;
+
   private boolean finished;
 
   Reprise() {
@@ -26,27 +30,28 @@ public class Reprise {
     inscrits = new ArrayList<CavalierChevalPair>();
   }
 
-  Reprise(Long moniteurId, String date){
+  Reprise(Long moniteurId, String date, int inscritMax, int galop){
     this.moniteurId = moniteurId;
     this.date = date;
-
+    this.inscritMax = inscritMax;
+    this.galop = galop;
     finished = false;
-
     inscrits = new ArrayList<CavalierChevalPair>();
-
   }
 
   public Long getRepriseId() {
-    return repriseId;
+    return this.repriseId;
   }
   public long getMoniteurId() {
-    return moniteurId;
+    return this.moniteurId;
   }
   public String getDate() {
-    return date;
+    return this.date;
   }
+  public int getInscritMax() {return this.inscritMax;}
+  public int getGalop() {return this.galop;}
   public boolean isFinished() {
-    return finished;
+    return this.finished;
   }
 
   public void setRepriseId(Long repriseId) {
@@ -58,6 +63,8 @@ public class Reprise {
   public void setDate(String date) {
     this.date = date;
   }
+  public void setInscritMax(int inscritMax) {this.inscritMax = inscritMax;}
+  public void setGalop(int galop) {this.galop = galop;}
   public void setFinished(boolean finished) {this.finished = finished;}
 
   public boolean isInscrit(Utilisateur utilisateur){
@@ -88,11 +95,13 @@ public class Reprise {
     return Objects.equals(this.repriseId, reprise.repriseId)
       && Objects.equals(this.moniteurId, reprise.moniteurId)
       && Objects.equals(this.date, reprise.date)
+      && Objects.equals(this.inscritMax, reprise.inscritMax)
+      && Objects.equals(this.galop, reprise.galop)
       && Objects.equals(this.finished, reprise.finished);
   }
 
   @Override
-  public int hashCode() { return Objects.hash(this.repriseId, this.moniteurId, this.inscrits, this.finished, this.date, this.finished);}
+  public int hashCode() { return Objects.hash(this.repriseId, this.moniteurId, this.inscrits, this.date, this.inscritMax, this.finished);}
 
   @Override
   public String toString(){
@@ -109,6 +118,7 @@ public class Reprise {
       ", moniteur='" + this.moniteurId +
       temp +
       ", date=" + this.date +
+      ", inscritMax=" + this.inscritMax +
       "}";
   }
 
