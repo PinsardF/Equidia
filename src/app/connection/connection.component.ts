@@ -21,7 +21,7 @@ export interface AddUser {
   role: string;
   telephone: string;
   numLicense: string;
-  galop: number;
+  galop: string;
   mdp: string;
 }
 
@@ -59,18 +59,7 @@ export class ConnectionComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
-    //let self = this;
     sessionStorage.setItem("role", null);
-    /*
-    this.http.get("http://localhost:8080/utilisateurs", {headers:headers}).subscribe(function(utilisateurs: Test[]) {
-      console.log(utilisateurs);
-    });*/
-    /*
-    var test: Test = {nom: "Robert", prenom: "Jean", email: "robert@free.fr", role: "cavalier", telephone: "0123232323",
-    galop: 3, numLicense: 10, login: "robert@free.fr", mdp: "mdp"};*/
-    //this.http.post("http://localhost:8080/cavaliers", test, {headers:headers}).subscribe(function(utilisateurs: Test[]) {
-      //console.log(utilisateurs);
-    //});
   }
 
   async connect(): Promise<void> {
@@ -84,24 +73,24 @@ export class ConnectionComponent implements OnInit {
     } else {
       sessionStorage.setItem("role", result.role);
       sessionStorage.setItem("id", result.id);
-      this.router.navigate(['/reprises']);
+      if(sessionStorage.getItem("role") == "cavalier" || sessionStorage.getItem("role") == "moniteur") {
+        this.router.navigate(['/reprises']);
+      } else {
+        this.router.navigate(['/admin']);
+      }
     }
   }
 
-  register(): void {
+  async register(): Promise<void> {
     if(this.passwordRegister != this.passwordRepeatRegister) {
       alert("Les mots de passe ne correspondent pas")
     } else {
-      //REQUEST : INSERT INTO users (email, first_name, last_name, password, phone, license) VALUES ()
-      /*
-      var newCavalier: AddUser(this.lastNameRegister,this.firstNameRegister,this.loginRegister,"cavalier",
-      this.phoneRegister,this.licenseRegister,1,this.passwordRegister);
-      this.http.post("http://localhost:8080/utilisateurs/", newCavalier, {headers:headers});
-      */
-      alert("Inscription avec le login " + this.loginRegister + ", le mdp " + this.passwordRegister + ", le prénom "
-      + this.firstNameRegister + ", le nom " + this.lastNameRegister + ", le téléphone " + this.phoneRegister
-      + " et la licence " + this.licenseRegister);
-      this.router.navigate(['/reprises']);
+      var newUser: AddUser = {nom:this.lastNameRegister,prenom:this.firstNameRegister,email:this.loginRegister,
+      role:"cavalier",telephone:this.phoneRegister,numLicense:this.licenseRegister,galop:"1",mdp:this.passwordRegister};
+      
+      await this.http.post("http://localhost:8080/utilisateurs/",newUser,{headers:headers})
+      .toPromise();
+      alert("Votre compte a bien été créé ! Vous pouvez maintenant vous connecter");
     }
   }
 

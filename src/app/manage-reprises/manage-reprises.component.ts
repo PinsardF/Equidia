@@ -14,6 +14,10 @@ export interface Horse {
   name: string;
   id: number;
 }
+export interface Paire {
+  cheval: Horse;
+  cavalier: User;
+}
 
 const headers = new HttpHeaders({'Content-Type':'application/json','Access-Control-Allow-Origin':'*'});
 
@@ -34,7 +38,7 @@ export class ManageReprisesComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.role = sessionStorage.getItem("role");
     this.role = "admin";//A SUPPRIMER
     this.sessionId = sessionStorage.getItem("idReprise");
@@ -46,7 +50,20 @@ export class ManageReprisesComponent implements OnInit {
     this.userList = [{first_name: 'Olga', last_name: 'Orville', id: '28', horseId: 0},
     {first_name: 'Francis', last_name: 'Bacon', id: '29', horseId: 0},
     {first_name: 'Deborah', last_name: 'Illia', id: '120', horseId: 0}];
-    this.horseList = [{name: 'Petit Poney', id: 4}, {name: 'Tempete', id: 12}, {name: 'Henri', id: 20}];
+    //this.horseList = [{name: 'Petit Poney', id: 4}, {name: 'Tempete', id: 12}, {name: 'Henri', id: 20}];
+    /*
+    var repriseDate;
+    await this.http.get("http://localhost:8080/reprises/"+this.sessionId,{headers:headers})
+    .toPromise().then(function(res) {
+      repriseDate = res[0].date;
+    });
+    var chevaux;
+    await this.http.get("http://localhost:8080/chevaux/disponibles/"+repriseDate,{headers:headers})
+    .toPromise().then(function(res) {
+      chevaux = res;
+    });
+    this.horseList = chevaux;
+    */
   }
 
   validateLesson() {
@@ -54,15 +71,16 @@ export class ManageReprisesComponent implements OnInit {
       alert('Vous n\'avez pas affecté tous les chevaux');
     } else {
       /*
+      var self = this;
       var paire: Paire;
-      for (var i=0;i<userList.length;i++) {
-        paire = new Paire(this.horseList[i], this.userList[i]);
-        this.http.post("http://localhost:8080/utilisateurs/" + this.sessionId + "/ajouterChevaux", paire, {headers:headers})
-      }
-      */
+      for (var i=0;i<this.userList.length;i++) {
+        paire = {this.horseList[i], this.userList[i]};
+        this.http.post("http://localhost:8080/utilisateurs/" + this.sessionId + "/ajouterChevaux", paire, {headers:headers});
+      }*/
+     /*
       alert(this.userList[0].first_name + ' a le cheval ' + this.userList[0].horseId + ', ' + this.userList[1].first_name
       + ':' + this.userList[1].horseId + ', ' + this.userList[2].first_name + ':' + this.userList[2].horseId);
-      this.router.navigate(['/reprises']);
+      this.router.navigate(['/reprises']);*/
     }
   }
 
