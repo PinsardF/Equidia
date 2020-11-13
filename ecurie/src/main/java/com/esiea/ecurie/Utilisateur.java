@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class Utilisateur {
 
-  private @Id @GeneratedValue Long userId;
+  private @Id @GeneratedValue Long utilisateurId;
   private String nom;
   private String prenom;
   private String email;
@@ -37,7 +37,7 @@ public class Utilisateur {
     this.mdp = mdp;
   }
 
-  public Long getUserId() { return this.userId;}
+  public Long getUtilisateurId() { return this.utilisateurId;}
   public String getNom() {return this.nom;}
   public String getPrenom() {return  this.prenom;}
   public String getEmail() {return this.email;}
@@ -48,7 +48,7 @@ public class Utilisateur {
 
   public String getMdp() {return this.mdp;}
 
-  public void setUserId(Long userId) {this.userId = userId;}
+  public void setUtilisateurId(Long userId) {this.utilisateurId = userId;}
   public void setNom (String nom) {this.nom = nom;}
   public void setPrenom (String prenom) {this.prenom = prenom;}
   public void setEmail (String email) {this.email = email;}
@@ -67,7 +67,7 @@ public class Utilisateur {
     if (!(o instanceof Utilisateur))
       return false;
     Utilisateur utilisateur = (Utilisateur) o;
-    return Objects.equals(this.userId, utilisateur.userId)
+    return Objects.equals(this.utilisateurId, utilisateur.utilisateurId)
       && Objects.equals(this.nom, utilisateur.nom)
       && Objects.equals(this.prenom, utilisateur.prenom)
       && Objects.equals(this.email, utilisateur.email)
@@ -78,11 +78,11 @@ public class Utilisateur {
   }
 
   @Override
-  public int hashCode() { return Objects.hash(this.userId, this.nom, this.prenom, this.email, this.role, this.telephone, this.numLicense, this.galop, this.mdp);}
+  public int hashCode() { return Objects.hash(this.utilisateurId, this.nom, this.prenom, this.email, this.role, this.telephone, this.numLicense, this.galop, this.mdp);}
 
   @Override
   public String toString(){
-    return "Cavalier{" + "id=" + this.userId +
+    return "Utilisateur{" + "utilisateurId=" + this.utilisateurId +
       ", nom='" + this.nom + '\'' +
       ", prénom=" + this.prenom +
       ", e-mail=" + this.email +

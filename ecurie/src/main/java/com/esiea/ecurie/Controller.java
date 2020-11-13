@@ -161,7 +161,7 @@ class Controller {
   List<Reprise> findReprisesCreees(@PathVariable Long moniteurId){
     Utilisateur utilisateur = oneUtilisateur(moniteurId);
     List<Reprise> reprises = allReprise();
-    reprises.removeIf(o -> (!o.getMoniteurId().equals(utilisateur.getUserId())));
+    reprises.removeIf(o -> (!o.getMoniteurId().equals(utilisateur.getUtilisateurId())));
     return reprises;
   }
   //endregion
@@ -230,7 +230,7 @@ class Controller {
 
     for (RepriseCavalierCheval i : temp){
       for (Utilisateur j : cavaliers){
-        if (i.getCavalierId().equals(j.getUserId())){
+        if (i.getCavalierId().equals(j.getUtilisateurId())){
           returnVal.add(j);
         }
       }
@@ -304,7 +304,7 @@ class Controller {
         return utilisateurRepository.save(utilisateur);
       })
       .orElseGet(() -> {
-        newUtilisateur.setUserId(utilisateurId);
+        newUtilisateur.setUtilisateurId(utilisateurId);
         return utilisateurRepository.save(newUtilisateur);
       });
   }
