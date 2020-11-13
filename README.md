@@ -10,7 +10,7 @@ Il est hébergé sur le port 8080.
 # Informations importantes
 
 Certaines pages sont mal cadrées, il faut vérifier que l'on descende jusqu'en bas de la page pour ne pas rater certains composants.
-Lors des ajouts (par exemple la création d'un nouveal administrateur), il faut recharger la page pour voir le nouvel objet créé apparaître.
+Lors des ajouts (par exemple la création d'un nouvel administrateur), il faut recharger la page pour voir le nouvel objet créé apparaître.
 Quelques comptes pour les tests :
  - (superadmin) sauron@mordor.me / mdp
  - (admin) admin1@admin.nk / mdp
