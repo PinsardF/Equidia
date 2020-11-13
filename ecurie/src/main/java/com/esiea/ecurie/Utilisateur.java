@@ -37,7 +37,7 @@ public class Utilisateur {
     this.mdp = mdp;
   }
 
-  public Long getId() { return this.userId;}
+  public Long getUserId() { return this.userId;}
   public String getNom() {return this.nom;}
   public String getPrenom() {return  this.prenom;}
   public String getEmail() {return this.email;}
@@ -48,7 +48,7 @@ public class Utilisateur {
 
   public String getMdp() {return this.mdp;}
 
-  public void setId(Long userId) {this.userId = userId;}
+  public void setUserId(Long userId) {this.userId = userId;}
   public void setNom (String nom) {this.nom = nom;}
   public void setPrenom (String prenom) {this.prenom = prenom;}
   public void setEmail (String email) {this.email = email;}

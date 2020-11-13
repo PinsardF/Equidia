@@ -75,17 +75,17 @@ class LoadDatabase {
   CommandLineRunner initRepriseCavalierChevalDatabase(RepriseCavalierChevalRepository repository) {
 
     return args -> {
-      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 1, (long) 8, null)));
-      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 1, (long) 9, null)));
-      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 1, (long) 10, null)));
+      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 17, (long) 8, null)));
+      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 17, (long) 9, null)));
+      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 17, (long) 10, null)));
 
-      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 2, (long) 8, null)));
-      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 2, (long) 9, null)));
-      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 2, (long) 10, null)));
+      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 18, (long) 8, null)));
+      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 18, (long) 9, null)));
+      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 18, (long) 10, null)));
 
-      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 3, (long) 8, null)));
-      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 3, (long) 9, null)));
-      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 3, (long) 10, null)));
+      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 19, (long) 8, null)));
+      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 19, (long) 9, null)));
+      log.info("Preloading " + repository.save(new RepriseCavalierCheval((long) 19, (long) 10, null)));
 
     };
   }
