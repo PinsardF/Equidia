@@ -11,10 +11,10 @@ Il est hébergé sur le port 8080.
 
 Certaines pages sont mal cadrées, il faut vérifier que l'on descende jusqu'en bas de la page pour ne pas rater certains composants.
 Quelques comptes pour les tests :
-  (superadmin) sauron@mordor.me / mdp
-  (admin) admin1@admin.nk / mdp
-  (moniteur) roi@gondo.nm / mdp
-  (cavalier) merry@brandebouc.sh / mdp7
+ - (superadmin) sauron@mordor.me / mdp
+ - (admin) admin1@admin.nk / mdp
+ - (moniteur) roi@gondo.nm / mdp
+ - (cavalier) merry@brandebouc.sh / mdp
 Lors des ajouts (par exemple la création d'un nouveal administrateur), il faut recharger la page pour voir le nouvel objet créé apparaître.
   
   
