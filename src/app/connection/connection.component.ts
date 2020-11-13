@@ -10,7 +10,7 @@ export interface User {
   role: string;
   telephone: string;
   numLicense: string;
-  galop: number;
+  galop: string;
   mdp: string;
   id: number;
 }
@@ -54,6 +54,8 @@ export class ConnectionComponent implements OnInit {
   phoneRegister: string;
   licenseRegister: string;
 
+  resultUser: User;
+
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -71,31 +73,19 @@ export class ConnectionComponent implements OnInit {
     //});
   }
 
-  connect(): void {
-    //REQUEST : SELECT email FROM users WHERE (email = [?] AND password = [?]) OR (email = [?] AND phone = [?])
-    /*
-    var result: User();
-    var connection: Boolean = false;
-    var self = this;
-    this.http.get("http://localhost:8080/utilisateurs/" + self.loginConnection + "/" + self.passwordConnection,{headers:headers})
-      .subscribe(function(users: User[]) {
-        if (users.length > 0) {
-          result = users[0];
-          connection = true;
-        }
-      })
-    if (connection) {
+  async connect(): Promise<void> {
+    var result;
+    await this.http.get("http://localhost:8080/utilisateurs/"+this.loginConnection+"/"+this.passwordConnection,{headers:headers})
+    .toPromise().then(function(res) {
+      result = res[0];
+    });
+    if(result == undefined) {
+      alert('Login ou mot de passe incorrect');
+    } else {
       sessionStorage.setItem("role", result.role);
       sessionStorage.setItem("id", result.id);
-      alert("Connexion avec le login " + this.loginConnection + " et le mdp " + this.passwordConnection)
       this.router.navigate(['/reprises']);
-    } else {
-      alert("Login ou mot de passe incorrect")
-      this.router.navigate(['/connection']);
     }
-    */
-    alert("Connexion avec le login " + this.loginConnection + " et le mdp " + this.passwordConnection)
-    this.router.navigate(['/reprises']);
   }
 
   register(): void {

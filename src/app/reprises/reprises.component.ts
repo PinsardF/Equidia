@@ -49,6 +49,7 @@ export class ReprisesComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
+    console.log(sessionStorage.getItem("role") + " " + sessionStorage.getItem("id"));
     this.role = sessionStorage.getItem("role");
     this.role='moniteur';//A SUPPRIMER
     /*
