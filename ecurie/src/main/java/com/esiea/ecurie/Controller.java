@@ -3,9 +3,7 @@ package com.esiea.ecurie;
 
 
 import java.util.List;
-import java.util.Map;
 
-import jdk.jshell.execution.Util;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,15 +21,18 @@ class Controller {
   private final UtilisateurRepository utilisateurRepository;
   private final ChevalRepository chevalRepository;
   private final RepriseRepository repriseRepository;
+  private final RepriseCavalierChevalRepository repriseCavalierChevalRepository;
 
 
   Controller (UtilisateurRepository utilisateurRepository,
               ChevalRepository chevalRepository,
-              RepriseRepository repriseRepository){
+              RepriseRepository repriseRepository,
+              RepriseCavalierChevalRepository repriseCavalierChevalRepository){
 
     this.utilisateurRepository = utilisateurRepository;
     this.chevalRepository = chevalRepository;
     this.repriseRepository = repriseRepository;
+    this.repriseCavalierChevalRepository = repriseCavalierChevalRepository;
   }
 
   //region GET mapping
@@ -64,7 +65,7 @@ class Controller {
   @GetMapping("/utilisateurs/{email}/{mdp}")
   List<Utilisateur> findUtilisateurByLoginMdp(@PathVariable String email, @PathVariable String mdp){
     List<Utilisateur> returnVal = utilisateurRepository.findAll();
-    returnVal.removeIf(o -> (!o.getEmail().equals(email)) && (!o.getMdp().equals(mdp)));
+    returnVal.removeIf(o -> ((!o.getEmail().equals(email)) || (!o.getMdp().equals(mdp))));
     return returnVal;
   }
   //endregion
@@ -97,9 +98,21 @@ class Controller {
   @GetMapping("/cavaliers/{cavalierId}/reprises")
   List<Reprise> findReprisesInscrites(@PathVariable Long cavalierId){
     Utilisateur utilisateur = oneUtilisateur(cavalierId);
+
+    List<RepriseCavalierCheval> temp = repriseCavalierChevalRepository.findAll();
     List<Reprise> reprises = allReprise();
-    reprises.removeIf(o -> (!o.isInscrit(utilisateur)));
-    return reprises;
+
+    List<Reprise> returnVal = allReprise();
+    returnVal.clear();
+
+    temp.removeIf(o -> !o.getCavalierId().equals(cavalierId));
+
+    for (Reprise i : reprises)
+      for (RepriseCavalierCheval j : temp)
+        if (j.getRepriseId().equals(i.getRepriseId()))
+          returnVal.add(i);
+
+    return returnVal;
   }
 
   //savoir si un cavalier est inscrit à un cours
@@ -108,11 +121,13 @@ class Controller {
   boolean isCavalierInscrit(@PathVariable Long repriseId, @PathVariable Long cavalierId){
     Utilisateur cavalier = oneUtilisateur(cavalierId);
     Reprise reprise = oneReprise(repriseId);
-    for (CavalierChevalPair paire : reprise.inscrits) {
-      if (cavalier.getId().equals(paire.getCavalierId()))
-        return true;
-    }
-    return false;
+
+    List<RepriseCavalierCheval> temp = repriseCavalierChevalRepository.findAll();
+
+    temp.removeIf(o -> !o.getRepriseId().equals(repriseId));
+    temp.removeIf(o -> !o.getCavalierId().equals(cavalierId));
+
+    return temp.isEmpty();
   }
   //endregion
 
@@ -169,8 +184,17 @@ class Controller {
   List<Cheval> chevauxDisponible (@PathVariable String date){
     List<Cheval> chevaux = allChevaux();
     List<Reprise> reprises = allReprise();
-    for (Reprise reprise: reprises){
-      chevaux.removeIf(reprise::isInscrit);
+
+    List<RepriseCavalierCheval> temp = repriseCavalierChevalRepository.findAll();
+
+    reprises.removeIf(o -> !o.getDate().equals(date));
+
+    for (Reprise reprise : reprises){
+      temp.removeIf(o -> !o.getRepriseId().equals(reprise.getRepriseId()));
+    }
+
+    for (RepriseCavalierCheval i : temp){
+      chevaux.removeIf(o -> o.getChevalId().equals(i.getChevalId()));
     }
     return chevaux;
   }
@@ -294,7 +318,6 @@ class Controller {
         reprise.setInscritMax(newReprise.getInscritMax());
         reprise.setGalop(newReprise.getGalop());
         reprise.setFinished(newReprise.isFinished());
-        reprise.inscrits = newReprise.inscrits;
         return repriseRepository.save(reprise);
       })
       .orElseGet(() -> {
@@ -317,35 +340,39 @@ class Controller {
 
   //Ajoute les chevaux aux cavaliers de la reprise spécifié par {repriseId}
   //Si un des cavaliers de paires n'est pas déjà dans la reprise, on ne l'ajoute pas
-  @PutMapping("reprises/{repriseId}/ajouterChevaux")
-  Reprise ajouterChevaux(@RequestBody List<CavalierChevalPair> paires, @PathVariable Long repriseId){
-    Reprise reprise = repriseRepository.findById(repriseId)
-      .orElseThrow(() -> new RepriseNotFoundException(repriseId));
-
-    reprise.inscrits.forEach(o -> {
-      paires.forEach(p -> {
-        if (o.getCavalierId().equals(p.getCavalierId())){
-          o.setChevalId(p.getChevalId());
+  @PutMapping("reprises/ajouterChevaux")
+  void ajouterChevaux(@RequestBody List<RepriseCavalierCheval> paires){
+    List<RepriseCavalierCheval> temp = repriseCavalierChevalRepository.findAll();
+    boolean alreadyPresent;
+    for (RepriseCavalierCheval nouveau : paires){
+      alreadyPresent = false;
+      for (RepriseCavalierCheval ancien : temp){
+        if (nouveau.getCavalierId().equals(ancien.getCavalierId())){
+          alreadyPresent = true;
         }
-      });
-    });
-    return reprise;
+      }
+      if (!alreadyPresent){
+        repriseCavalierChevalRepository.save(nouveau);
+      }
+    }
   }
 
   //Ajoute un cavalier à une reprise, ne l'ajoute pas s'il est déjà présent
   //vérifie si un cavalier correspond à l'id
   @PutMapping("reprises/{repriseId}/ajouterCavalier/{cavalierId}")
   Reprise ajouterCavalier(@PathVariable Long repriseId, @PathVariable Long cavalierId){
-    utilisateurRepository.findById(cavalierId).orElseThrow(() -> new UtilisateurNotFoundException(cavalierId));
-    Reprise reprise = repriseRepository.findById(repriseId)
-      .orElseThrow(() -> new RepriseNotFoundException(repriseId));
-    for (CavalierChevalPair paire : reprise.inscrits){
-      if (paire.getCavalierId().equals(cavalierId))
-        return reprise;
+    boolean alreadyPresent = false;
+    Utilisateur cavalier = oneUtilisateur(cavalierId);
+    Reprise reprise = oneReprise(repriseId);
+    List<RepriseCavalierCheval> temp = repriseCavalierChevalRepository.findAll();
+    temp.removeIf(o -> !(o.getRepriseId() == repriseId));
+    for (RepriseCavalierCheval i : temp){
+      if (i.getCavalierId().equals(cavalierId))
+        alreadyPresent = true;
     }
-    CavalierChevalPair nouvellePaire = new CavalierChevalPair();
-    nouvellePaire.setCavalierId(cavalierId);
-    reprise.inscrits.add(nouvellePaire);
+    if (!alreadyPresent){
+      repriseCavalierChevalRepository.save(new RepriseCavalierCheval(repriseId, cavalierId,null));
+    }
     return reprise;
   }
   //endregion

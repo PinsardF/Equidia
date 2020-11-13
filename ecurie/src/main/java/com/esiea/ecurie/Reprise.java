@@ -4,30 +4,33 @@ import java.util.ArrayList;
 
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Reprise {
+class Reprise {
 
-  private @Id @GeneratedValue Long repriseId;
+  @Id
+  @GeneratedValue
+  @Column (name = "repriseId")
+  private Long repriseId;
+
+  @Column (name = "moniteurId")
   private Long moniteurId;
 
-  public ArrayList<CavalierChevalPair> inscrits;  //set a public car sinon je dois créer des getter/setter pour chaque opération
-
+  @Column (name = "date")
   private String date;    // format: 1970/12/31/1230
 
+  @Column (name = "inscritMax")
   private String inscritMax;
 
+  @Column (name = "galop")
   private String galop;
 
+  @Column (name = "finished")
   private boolean finished;
 
   Reprise() {
     finished = false;
-
-    inscrits = new ArrayList<CavalierChevalPair>();
   }
 
   Reprise(Long moniteurId, String date, String inscritMax, String galop){
@@ -36,13 +39,12 @@ public class Reprise {
     this.inscritMax = inscritMax;
     this.galop = galop;
     finished = false;
-    inscrits = new ArrayList<CavalierChevalPair>();
   }
 
   public Long getRepriseId() {
     return this.repriseId;
   }
-  public long getMoniteurId() {
+  public Long getMoniteurId() {
     return this.moniteurId;
   }
   public String getDate() {
@@ -67,23 +69,6 @@ public class Reprise {
   public void setGalop(String galop) {this.galop = galop;}
   public void setFinished(boolean finished) {this.finished = finished;}
 
-  public boolean isInscrit(Utilisateur utilisateur){
-    for (CavalierChevalPair pair: this.inscrits) {
-      if (pair.getCavalierId() == utilisateur.getId()){
-        return true;
-      }
-    }
-    return false;
-  }
-  public boolean isInscrit(Cheval cheval){
-    for (CavalierChevalPair pair: this.inscrits) {
-      if (pair.getCavalierId() == cheval.getChevalId()){
-        return true;
-      }
-    }
-    return false;
-  }
-
   @Override
   public boolean equals(Object o) {
 
@@ -101,22 +86,12 @@ public class Reprise {
   }
 
   @Override
-  public int hashCode() { return Objects.hash(this.repriseId, this.moniteurId, this.inscrits, this.date, this.inscritMax, this.finished);}
+  public int hashCode() { return Objects.hash(this.repriseId, this.moniteurId, this.date, this.inscritMax, this.finished);}
 
   @Override
   public String toString(){
-
-    String temp = "Inscrits{";
-
-    for (CavalierChevalPair pair: this.inscrits) {
-      temp += pair.toString();
-    }
-
-    temp += "}";
-
     return "Reprise{" + "id=" + this.repriseId +
       ", moniteur='" + this.moniteurId +
-      temp +
       ", date=" + this.date +
       ", inscritMax=" + this.inscritMax +
       "}";
