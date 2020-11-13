@@ -58,7 +58,6 @@ export class ReprisesComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem("role");
-    this.role='moniteur';//A SUPPRIMER
     /*
     var self = this;
     this.http.get("http://localhost:8080/cavaliers/"+sessionStorage.getItem("id")+"/reprises",{headers:headers})

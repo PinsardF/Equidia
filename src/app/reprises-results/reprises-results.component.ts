@@ -27,7 +27,6 @@ export class ReprisesResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem("role");
-    this.role='cavalier';//A SUPPRIMER
     if (this.role == 'moniteur') {
       this.DisplayedColumns = ['date', 'hour', 'level', 'instructor'];
     }

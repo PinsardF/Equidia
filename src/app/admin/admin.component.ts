@@ -81,7 +81,6 @@ export class AdminComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.role = sessionStorage.getItem("role");
-    this.role='superadmin';//A SUPPRIMER
     if (this.role == "superadmin") {
       var adminResult;
       await this.http.get("http://localhost:8080/administrateurs/",{headers:headers})

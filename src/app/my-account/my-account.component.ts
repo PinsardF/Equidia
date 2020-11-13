@@ -38,7 +38,6 @@ export class MyAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem("role");
-    this.role='cavalier';//A SUPPRIMER
     /*
     var self = this;
     this.http.get("http://localhost:8080/utilisateurs/" + sessionStorage.getItem("id"),{headers:headers})

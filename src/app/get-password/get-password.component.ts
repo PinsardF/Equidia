@@ -14,8 +14,7 @@ export class GetPasswordComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   send() {
     alert('Nouveau mdp sur l\'adresse ' + this.email);
