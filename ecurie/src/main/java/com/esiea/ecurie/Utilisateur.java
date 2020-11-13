@@ -15,17 +15,17 @@ class Utilisateur {
   private String email;
   private String role; //soit "cavalier" ; "moniteur" ; "admin" ; "superadmin"
   private String telephone;
+  private String numLicense;
 
   private int galop;
-  private int numLicense;
 
-  private String login;
+
   //MDP pas version finale, a modifier une fois authentification effectuée
   private String mdp;
 
   Utilisateur() {}
 
-  Utilisateur(String nom, String prenom, String email, String role, String telephone, int galop, int numLicense, String login, String mdp){
+  Utilisateur(String nom, String prenom, String email, String role, String telephone, String numLicense, int galop, String mdp){
     this.nom = nom;
     this.prenom = prenom;
     this.email = email;
@@ -34,7 +34,6 @@ class Utilisateur {
     this.galop = galop;
     this.numLicense = numLicense;
 
-    this.login = login;
     this.mdp = mdp;
   }
 
@@ -45,9 +44,8 @@ class Utilisateur {
   public String getRole() {return this.role;}
   public String getTelephone() {return this.telephone;}
   public int getGalop() {return this.galop;}
-  public int getNumLicense() {return this.numLicense;}
+  public String getNumLicense() {return this.numLicense;}
 
-  public String getLogin() {return this.login;}
   public String getMdp() {return this.mdp;}
 
   public void setId(Long userId) {this.userId = userId;}
@@ -57,9 +55,8 @@ class Utilisateur {
   public void setRole (String role) {this.role = role;}
   public void setTelephone (String telephone) {this.telephone = telephone;}
   public void setGalop (int galop) {this.galop = galop;}
-  public void setNumLicense(int numLicense) {this.numLicense = numLicense;}
+  public void setNumLicense(String numLicense) {this.numLicense = numLicense;}
 
-  public void setLogin(String login) {this.login = login;}
   public void setMdp(String mdp) {this.mdp = mdp;}
 
   @Override
@@ -77,12 +74,11 @@ class Utilisateur {
       && Objects.equals(this.role, utilisateur.role)
       && Objects.equals(this.telephone, utilisateur.telephone)
       && Objects.equals(this.galop, utilisateur.galop)
-      && Objects.equals(this.numLicense, utilisateur.numLicense)
-      && Objects.equals(this.login, utilisateur.login);
+      && Objects.equals(this.numLicense, utilisateur.numLicense);
   }
 
   @Override
-  public int hashCode() { return Objects.hash(this.userId, this.nom, this.prenom, this.email, this.role, this.telephone, this.galop, this.numLicense, this.login, this.mdp);}
+  public int hashCode() { return Objects.hash(this.userId, this.nom, this.prenom, this.email, this.role, this.telephone, this.numLicense, this.galop, this.mdp);}
 
   @Override
   public String toString(){
@@ -93,7 +89,6 @@ class Utilisateur {
       ", role=" + this.role +
       ", téléphone=" + this.telephone +
       ", galop=" + this.galop +
-      ", numLicense=" + this.numLicense +
-      ", login=" + this.login + "}";
+      ", numLicense=" + this.numLicense + "}";
   }
 }
