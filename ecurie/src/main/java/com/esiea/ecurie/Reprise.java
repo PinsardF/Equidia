@@ -18,9 +18,9 @@ public class Reprise {
 
   private String date;    // format: 1970/12/31/1230
 
-  private int inscritMax;
+  private String inscritMax;
 
-  private int galop;
+  private String galop;
 
   private boolean finished;
 
@@ -30,7 +30,7 @@ public class Reprise {
     inscrits = new ArrayList<CavalierChevalPair>();
   }
 
-  Reprise(Long moniteurId, String date, int inscritMax, int galop){
+  Reprise(Long moniteurId, String date, String inscritMax, String galop){
     this.moniteurId = moniteurId;
     this.date = date;
     this.inscritMax = inscritMax;
@@ -48,8 +48,8 @@ public class Reprise {
   public String getDate() {
     return this.date;
   }
-  public int getInscritMax() {return this.inscritMax;}
-  public int getGalop() {return this.galop;}
+  public String getInscritMax() {return this.inscritMax;}
+  public String getGalop() {return this.galop;}
   public boolean isFinished() {
     return this.finished;
   }
@@ -63,8 +63,8 @@ public class Reprise {
   public void setDate(String date) {
     this.date = date;
   }
-  public void setInscritMax(int inscritMax) {this.inscritMax = inscritMax;}
-  public void setGalop(int galop) {this.galop = galop;}
+  public void setInscritMax(String inscritMax) {this.inscritMax = inscritMax;}
+  public void setGalop(String galop) {this.galop = galop;}
   public void setFinished(boolean finished) {this.finished = finished;}
 
   public boolean isInscrit(Utilisateur utilisateur){

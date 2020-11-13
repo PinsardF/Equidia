@@ -17,7 +17,7 @@ class Utilisateur {
   private String telephone;
   private String numLicense;
 
-  private int galop;
+  private String galop;
 
 
   //MDP pas version finale, a modifier une fois authentification effectuée
@@ -25,7 +25,7 @@ class Utilisateur {
 
   Utilisateur() {}
 
-  Utilisateur(String nom, String prenom, String email, String role, String telephone, String numLicense, int galop, String mdp){
+  Utilisateur(String nom, String prenom, String email, String role, String telephone, String numLicense, String galop, String mdp){
     this.nom = nom;
     this.prenom = prenom;
     this.email = email;
@@ -43,7 +43,7 @@ class Utilisateur {
   public String getEmail() {return this.email;}
   public String getRole() {return this.role;}
   public String getTelephone() {return this.telephone;}
-  public int getGalop() {return this.galop;}
+  public String getGalop() {return this.galop;}
   public String getNumLicense() {return this.numLicense;}
 
   public String getMdp() {return this.mdp;}
@@ -54,7 +54,7 @@ class Utilisateur {
   public void setEmail (String email) {this.email = email;}
   public void setRole (String role) {this.role = role;}
   public void setTelephone (String telephone) {this.telephone = telephone;}
-  public void setGalop (int galop) {this.galop = galop;}
+  public void setGalop (String galop) {this.galop = galop;}
   public void setNumLicense(String numLicense) {this.numLicense = numLicense;}
 
   public void setMdp(String mdp) {this.mdp = mdp;}

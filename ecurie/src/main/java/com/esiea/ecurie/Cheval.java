@@ -11,12 +11,12 @@ class Cheval {
 
   private @Id @GeneratedValue Long chevalId;
   private String nom;
-  private int age;
-  private int galop;
+  private String age;
+  private String galop;
 
   Cheval() {}
 
-  Cheval(String nom, int age, int galop){
+  Cheval(String nom, String age, String galop){
     this.nom = nom;
     this.age = age;
     this.galop = galop;
@@ -24,13 +24,13 @@ class Cheval {
 
   public Long getChevalId() {return this.chevalId;}
   public String getNom() {return this.nom;}
-  public int getAge() {return this.age;}
-  public int getGalop() {return this.galop;}
+  public String getAge() {return this.age;}
+  public String getGalop() {return this.galop;}
 
   public void setChevalId(Long chevalId) {this.chevalId = chevalId;}
   public void setNom(String nom) {this.nom = nom;}
-  public void setAge(int age) {this.age = age;}
-  public void setGalop(int galop) {this.galop = galop;}
+  public void setAge(String age) {this.age = age;}
+  public void setGalop(String galop) {this.galop = galop;}
 
   @Override
   public boolean equals(Object o) {
