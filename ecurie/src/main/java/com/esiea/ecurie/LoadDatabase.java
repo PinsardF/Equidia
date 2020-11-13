@@ -18,7 +18,7 @@ class LoadDatabase {
       log.info("Preloading " + repository.save(new Utilisateur("Orville", "Olga", "orville@orange.fr",
         "cavalier", "0112467385","45", 3, "123")));
       log.info("Preloading " + repository.save(new Utilisateur("Cramer", "Kevin", "kev@free.fr",
-        "cavalier", "0112467385", "3", 6, "123")));
+        "cavalier", "0112467385", "3", 6, "123")));//
     };
   }
 }
