@@ -55,11 +55,12 @@ export class ConnectionComponent implements OnInit {
     this.http.get("http://localhost:8080/utilisateurs", {headers:headers}).subscribe(function(utilisateurs: Test[]) {
       console.log(utilisateurs);
     });*/
+    /*
     var test: Test = {nom: "Robert", prenom: "Jean", email: "robert@free.fr", role: "cavalier", telephone: "0123232323",
-    galop: 3, numLicense: 10, login: "robert@free.fr", mdp: "mdp"};
-    this.http.post("http://localhost:8080/utilisateurs", test, {headers:headers}).subscribe(function(utilisateurs: Test[]) {
+    galop: 3, numLicense: 10, login: "robert@free.fr", mdp: "mdp"};*/
+    //this.http.post("http://localhost:8080/utilisateurs", test, {headers:headers}).subscribe(function(utilisateurs: Test[]) {
       //console.log(utilisateurs);
-    });
+    //});
   }
 
   connect(): void {

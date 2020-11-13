@@ -15,10 +15,10 @@ class LoadDatabase {
   CommandLineRunner initDatabase(UtilisateurRepository repository) {
 
     return args -> {
-      log.info("Preloading " + repository.save(new Utilisateur("Nom", "Prenom", "email@orange.fr",
-        "admin", "0123456789", 3,1052, "email@orange.fr", "123")));
-      log.info("Preloading " + repository.save(new Utilisateur("Delafontaine", "Jean", "fontaine@orange.fr",
-        "superadmin", "0987654321", 7,12, "fontaine@orange.fr", "12345")));
+      log.info("Preloading " + repository.save(new Utilisateur("Orville", "Olga", "orville@orange.fr",
+        "cavalier", "0112467385","45", 3, "123")));
+      log.info("Preloading " + repository.save(new Utilisateur("Cramer", "Kevin", "kev@free.fr",
+        "cavalier", "0112467385", "3", 6, "123")));
     };
   }
 }

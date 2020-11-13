@@ -1,20 +1,28 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-export interface Member {
-  firstName: string;
-  lastName: string;
+export interface User {
+  nom: string;
+  prenom: string;
   email: string;
-  phone: string;
-  license: string;
+  role: string;
+  telephone: string;
+  numLicense: string;
+  galop: number;
+  mdp: string;
+  id: number;
 }
+
+const headers = new HttpHeaders({'Content-Type':'application/json','Access-Control-Allow-Origin':'*'});
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
+
 export class AdminComponent implements OnInit {
 
   role: string;
@@ -48,26 +56,39 @@ export class AdminComponent implements OnInit {
   monitorSearch: string;
   userSearch: string;
 
-  adminList: Member[];
-  monitorList: Member[];
-  userList: Member[];
-  adminDisplayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone'];
-  monitorDisplayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone', 'license'];
-  userDisplayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone', 'license'];
+  adminList: User[];
+  monitorList: User[];
+  userList: User[];
+  adminDisplayedColumns: string[] = ['prenom', 'nom', 'email', 'telephone'];
+  monitorDisplayedColumns: string[] = ['prenom', 'nom', 'email', 'telephone', 'numLicense'];
+  userDisplayedColumns: string[] = ['prenom', 'nom', 'email', 'telephone', 'numLicense'];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem("role");
     this.role='superadmin';//A SUPPRIMER
-    this.adminList = [{firstName: 'Jean', lastName: 'Kadar', email: 'kadar@et.esiea.fr', phone: '0741442585', license: ''},
-    {firstName: 'Wilfried', lastName: 'Destin', email: 'destinw@orange.fr', phone: '0649482530', license: '251'}];
-    this.monitorList = [{firstName: 'Eric', lastName: 'Paolo', email: 'paoloeric@gmail.com', phone: '0728442985', license: '12'},
-    {firstName: 'Aude', lastName: 'Chauvat', email: 'chauvata@orange.fr', phone: '0641565552', license: '140'},
-    {firstName: 'Cassandra', lastName: 'Jouasse', email: 'cass@free.fr', phone: '0630201287', license: '250'}];
-    this.userList = [{firstName: 'Sarah', lastName: 'Paolo', email: 'paolosarah@gmail.com', phone: '0728142984', license: '852'},
-    {firstName: 'Jeannine', lastName: 'Pointier', email: 'pointierjeannine@orange.fr', phone: '0134237133', license: '1024'},
-    {firstName: 'Claude', lastName: 'Dubonnet', email: 'duboclaude@gmail.com', phone: '0606215537', license: ''}];
+
+    this.http.get("http://localhost:8080/utilisateurs", {headers:headers}).subscribe(function(utilisateurs: User[]) {
+      console.log(utilisateurs);
+    });
+
+    this.adminList = [{prenom: 'Jean', nom: 'Kadar', email: 'kadar@et.esiea.fr', telephone: '0741442585', numLicense: '',
+    role: 'admin', galop: 3, mdp: '', id: 2},
+    {prenom: 'Wilfried', nom: 'Destin', email: 'destinw@orange.fr', telephone: '0649482530', numLicense: '251',
+    role: 'admin', galop: 7, mdp: '', id:12}];
+    this.monitorList = [{prenom: 'Eric', nom: 'Paolo', email: 'paoloeric@gmail.com', telephone: '0728442985', numLicense: '12',
+    role: 'moniteur', galop: 3, mdp: '', id: 5},
+    {prenom: 'Aude', nom: 'Chauvat', email: 'chauvata@orange.fr', telephone: '0641565552', numLicense: '140', role: 'moniteur',
+    galop: 4, mdp: '', id: 128},
+    {prenom: 'Cassandra', nom: 'Jouasse', email: 'cass@free.fr', telephone: '0630201287', numLicense: '250', role: 'moniteur',
+    galop: 6, mdp: '', id: 129}];
+    this.userList = [{prenom: 'Sarah', nom: 'Paolo', email: 'paolosarah@gmail.com', telephone: '0728142984', numLicense: '852',
+    role: 'cavalier', galop: 1, mdp: '', id: 130},
+    {prenom: 'Jeannine', nom: 'Pointier', email: 'pointierjeannine@orange.fr', telephone: '0134237133', numLicense: '1024',
+    role: 'cavalier', galop: 1, mdp: '', id: 132},
+    {prenom: 'Claude', nom: 'Dubonnet', email: 'duboclaude@gmail.com', telephone: '0606215537', numLicense: '',
+    role: 'cavalier', galop: 2, mdp: '', id: 133}];
   }
 
   getErrorMessageadmFN() {
